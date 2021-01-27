@@ -1,0 +1,1161 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>My simulation</title>
+    <meta name="description" content="My simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Global stylesheet. We might switch to Bootstrap in the future -->
+    <link rel="stylesheet" href="sakura.css">
+
+    <!-- KaTeX files -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+      integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq"
+      crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+      integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+      crossorigin="anonymous">
+    </script>
+
+    <!-- To automatically render math in text elements, include the
+    auto-render extension: -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);">
+    </script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 id="my-simulation">My simulation</h1>
+<p>Desc.</p>
+<p>The simulation starts at t0=None and lasts None seconds.</p>
+<div class="toc">
+<ul>
+<li><a href="#my-simulation">My simulation</a></li>
+<li><a href="#base-information">Base information</a><ul>
+<li><a href="#planet-jupiter-frequency-low-00">Planet: jupiter - Frequency low - 0.0</a></li>
+<li><a href="#planet-jupiter-frequency-low-200">Planet: jupiter - Frequency low - 20.0</a></li>
+<li><a href="#planet-jupiter-frequency-low-450">Planet: jupiter - Frequency low - 45.0</a></li>
+<li><a href="#planet-jupiter-frequency-low-900">Planet: jupiter - Frequency low - 90.0</a></li>
+<li><a href="#planet-jupiter-frequency-low-1200">Planet: jupiter - Frequency low - 120.0</a></li>
+<li><a href="#planet-jupiter-frequency-mid-00">Planet: jupiter - Frequency mid - 0.0</a></li>
+<li><a href="#planet-jupiter-frequency-mid-200">Planet: jupiter - Frequency mid - 20.0</a></li>
+<li><a href="#planet-jupiter-frequency-mid-450">Planet: jupiter - Frequency mid - 45.0</a></li>
+<li><a href="#planet-jupiter-frequency-mid-900">Planet: jupiter - Frequency mid - 90.0</a></li>
+<li><a href="#planet-jupiter-frequency-mid-1200">Planet: jupiter - Frequency mid - 120.0</a></li>
+<li><a href="#planet-jupiter-frequency-high-00">Planet: jupiter - Frequency high - 0.0</a></li>
+<li><a href="#planet-jupiter-frequency-high-200">Planet: jupiter - Frequency high - 20.0</a></li>
+<li><a href="#planet-jupiter-frequency-high-450">Planet: jupiter - Frequency high - 45.0</a></li>
+<li><a href="#planet-jupiter-frequency-high-900">Planet: jupiter - Frequency high - 90.0</a></li>
+<li><a href="#planet-jupiter-frequency-high-1200">Planet: jupiter - Frequency high - 120.0</a></li>
+<li><a href="#planet-neptune-frequency-low-00">Planet: neptune - Frequency low - 0.0</a></li>
+<li><a href="#planet-neptune-frequency-low-200">Planet: neptune - Frequency low - 20.0</a></li>
+<li><a href="#planet-neptune-frequency-low-450">Planet: neptune - Frequency low - 45.0</a></li>
+<li><a href="#planet-neptune-frequency-low-900">Planet: neptune - Frequency low - 90.0</a></li>
+<li><a href="#planet-neptune-frequency-low-1200">Planet: neptune - Frequency low - 120.0</a></li>
+<li><a href="#planet-neptune-frequency-mid-00">Planet: neptune - Frequency mid - 0.0</a></li>
+<li><a href="#planet-neptune-frequency-mid-200">Planet: neptune - Frequency mid - 20.0</a></li>
+<li><a href="#planet-neptune-frequency-mid-450">Planet: neptune - Frequency mid - 45.0</a></li>
+<li><a href="#planet-neptune-frequency-mid-900">Planet: neptune - Frequency mid - 90.0</a></li>
+<li><a href="#planet-neptune-frequency-mid-1200">Planet: neptune - Frequency mid - 120.0</a></li>
+<li><a href="#planet-neptune-frequency-high-00">Planet: neptune - Frequency high - 0.0</a></li>
+<li><a href="#planet-neptune-frequency-high-200">Planet: neptune - Frequency high - 20.0</a></li>
+<li><a href="#planet-neptune-frequency-high-450">Planet: neptune - Frequency high - 45.0</a></li>
+<li><a href="#planet-neptune-frequency-high-900">Planet: neptune - Frequency high - 90.0</a></li>
+<li><a href="#planet-neptune-frequency-high-1200">Planet: neptune - Frequency high - 120.0</a></li>
+<li><a href="#planet-uranus-frequency-low-00">Planet: uranus - Frequency low - 0.0</a></li>
+<li><a href="#planet-uranus-frequency-low-200">Planet: uranus - Frequency low - 20.0</a></li>
+<li><a href="#planet-uranus-frequency-low-450">Planet: uranus - Frequency low - 45.0</a></li>
+<li><a href="#planet-uranus-frequency-low-900">Planet: uranus - Frequency low - 90.0</a></li>
+<li><a href="#planet-uranus-frequency-low-1200">Planet: uranus - Frequency low - 120.0</a></li>
+<li><a href="#planet-uranus-frequency-mid-00">Planet: uranus - Frequency mid - 0.0</a></li>
+<li><a href="#planet-uranus-frequency-mid-200">Planet: uranus - Frequency mid - 20.0</a></li>
+<li><a href="#planet-uranus-frequency-mid-450">Planet: uranus - Frequency mid - 45.0</a></li>
+<li><a href="#planet-uranus-frequency-mid-900">Planet: uranus - Frequency mid - 90.0</a></li>
+<li><a href="#planet-uranus-frequency-mid-1200">Planet: uranus - Frequency mid - 120.0</a></li>
+<li><a href="#planet-uranus-frequency-high-00">Planet: uranus - Frequency high - 0.0</a></li>
+<li><a href="#planet-uranus-frequency-high-200">Planet: uranus - Frequency high - 20.0</a></li>
+<li><a href="#planet-uranus-frequency-high-450">Planet: uranus - Frequency high - 45.0</a></li>
+<li><a href="#planet-uranus-frequency-high-900">Planet: uranus - Frequency high - 90.0</a></li>
+<li><a href="#planet-uranus-frequency-high-1200">Planet: uranus - Frequency high - 120.0</a></li>
+<li><a href="#jupiter-plot">jupiter plot</a></li>
+<li><a href="#neptune-plot">neptune plot</a></li>
+<li><a href="#uranus-plot">uranus plot</a></li>
+<li><a href="#instrument-model-objects">Instrument model objects</a></li>
+<li><a href="#source-code-used-in-the-simulation">Source code used in the simulation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="base-information">Base information</h1>
+<p>This report contains information about the dependency of the in-flight beam&rsquo;s inclination angle on planet and telescope frequency.
+The document contains plots</p>
+<h3 id="planet-jupiter-frequency-low-00">Planet: jupiter - Frequency low - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.435 ± 0.175 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-low-200">Planet: jupiter - Frequency low - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.508 ± 0.141 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.001 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-low-450">Planet: jupiter - Frequency low - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.447 ± 0.129 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.001 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-low-900">Planet: jupiter - Frequency low - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.556 ± 0.162 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-low-1200">Planet: jupiter - Frequency low - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.525 ± 0.157 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-mid-00">Planet: jupiter - Frequency mid - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.902 ± 0.010 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.000 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-mid-200">Planet: jupiter - Frequency mid - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.898 ± 0.012 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.000 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-mid-450">Planet: jupiter - Frequency mid - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.903 ± 0.014 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.000 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-mid-900">Planet: jupiter - Frequency mid - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.901 ± 0.013 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.000 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-mid-1200">Planet: jupiter - Frequency mid - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.901 ± 0.013 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.000 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-high-00">Planet: jupiter - Frequency high - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.878 ± 0.034 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.001 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-high-200">Planet: jupiter - Frequency high - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.894 ± 0.033 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-high-450">Planet: jupiter - Frequency high - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.893 ± 0.041 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-high-900">Planet: jupiter - Frequency high - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.904 ± 0.037 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-jupiter-frequency-high-1200">Planet: jupiter - Frequency high - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.914 ± 0.028 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.002 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-low-00">Planet: neptune - Frequency low - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.947 ± 1.158 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.018 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-low-200">Planet: neptune - Frequency low - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>69.815 ± 0.947 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.005 ± 0.014 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-low-450">Planet: neptune - Frequency low - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.363 ± 0.800 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.020 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-low-900">Planet: neptune - Frequency low - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.152 ± 1.239 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.003 ± 0.019 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-low-1200">Planet: neptune - Frequency low - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.124 ± 1.434 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.019 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-mid-00">Planet: neptune - Frequency mid - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.899 ± 0.129 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.005 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-mid-200">Planet: neptune - Frequency mid - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.877 ± 0.112 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.004 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-mid-450">Planet: neptune - Frequency mid - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.888 ± 0.105 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-mid-900">Planet: neptune - Frequency mid - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.918 ± 0.081 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-mid-1200">Planet: neptune - Frequency mid - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.886 ± 0.092 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-high-00">Planet: neptune - Frequency high - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.960 ± 0.299 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.016 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-high-200">Planet: neptune - Frequency high - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>18.086 ± 0.290 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.994 ± 0.015 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-high-450">Planet: neptune - Frequency high - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.885 ± 0.246 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.997 ± 0.013 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-high-900">Planet: neptune - Frequency high - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.747 ± 0.285 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.004 ± 0.014 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-neptune-frequency-high-1200">Planet: neptune - Frequency high - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.780 ± 0.325 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.006 ± 0.021 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-low-00">Planet: uranus - Frequency low - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.779 ± 1.098 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.021 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-low-200">Planet: uranus - Frequency low - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.576 ± 1.030 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.022 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-low-450">Planet: uranus - Frequency low - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.620 ± 1.332 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.003 ± 0.018 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-low-900">Planet: uranus - Frequency low - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.505 ± 1.594 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.003 ± 0.014 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-low-1200">Planet: uranus - Frequency low - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>70.713 ± 1.205 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.007 ± 0.018 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-mid-00">Planet: uranus - Frequency mid - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.900 ± 0.088 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-mid-200">Planet: uranus - Frequency mid - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.927 ± 0.090 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-mid-450">Planet: uranus - Frequency mid - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.946 ± 0.094 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.004 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-mid-900">Planet: uranus - Frequency mid - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.898 ± 0.085 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.003 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-mid-1200">Planet: uranus - Frequency mid - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>28.952 ± 0.082 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.004 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-high-00">Planet: uranus - Frequency high - 0.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.971 ± 0.248 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.001 ± 0.012 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-high-200">Planet: uranus - Frequency high - 20.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.968 ± 0.250 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.999 ± 0.012 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-high-450">Planet: uranus - Frequency high - 45.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>17.896 ± 0.149 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>0.997 ± 0.012 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-high-900">Planet: uranus - Frequency high - 90.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>18.013 ± 0.333 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.002 ± 0.014 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planet-uranus-frequency-high-1200">Planet: uranus - Frequency high - 120.0</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># of runs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>FWHM</td>
+<td>18.002 ± 0.284 arcmin</td>
+</tr>
+<tr>
+<td>γ0</td>
+<td>1.000 ± 0.012 arcmin</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jupiter-plot">jupiter plot</h2>
+<p><img alt="" src="results/figures/jupiter.png" /></p>
+<h2 id="neptune-plot">neptune plot</h2>
+<p><img alt="" src="results/figures/neptune.png" /></p>
+<h2 id="uranus-plot">uranus plot</h2>
+<p><img alt="" src="results/figures/uranus.png" /></p>
+<h2 id="instrument-model-objects">Instrument model objects</h2>
+<h2 id="source-code-used-in-the-simulation">Source code used in the simulation</h2>
+<ul>
+<li>Main repository: <a href="https://github.com/litebird/litebird_sim">github.com/litebird/litebird_sim</a></li>
+<li>Version: 0.1.0, by The LiteBIRD simulation team</li>
+<li>Commit hash: <a href="https://github.com/litebird/litebird_sim/commit/{commit_hash}">{short_commit_hash}</a>
+    (<em>{commit_message}</em>, by {author})</li>
+</ul>
+<hr />
+<p>Report written on 2021-01-27 19:08:15</p>
+    </div>
+
+</body>
+</html>
