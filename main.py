@@ -442,7 +442,7 @@ noise/optical properties of a detector.
 
 def main():
     sim2 = lbs.Simulation(
-        base_path = "extra/",
+        base_path = "results/",
         name = "My simulation",
         description= "Desc."
     )

@@ -1,4 +1,5 @@
 results/error_map.fits
+.DS_Store
 litebird-scanning-strategy/map.fits.gz
 litebird-scanning-strategy/report.html
 litebird-scanning-strategy/report.md

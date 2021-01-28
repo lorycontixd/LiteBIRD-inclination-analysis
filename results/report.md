@@ -21,7 +21,7 @@ The document contains plots
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.435 ± 0.175 arcmin
+FWHM       | 70.543 ± 0.184 arcmin
 γ0         | 1.000 ± 0.002 arcmin
 
                     
@@ -32,8 +32,8 @@ FWHM       | 70.435 ± 0.175 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.508 ± 0.141 arcmin
-γ0         | 1.000 ± 0.001 arcmin
+FWHM       | 70.542 ± 0.132 arcmin
+γ0         | 1.000 ± 0.002 arcmin
 
                     
 
@@ -43,8 +43,8 @@ FWHM       | 70.508 ± 0.141 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.447 ± 0.129 arcmin
-γ0         | 1.000 ± 0.001 arcmin
+FWHM       | 70.554 ± 0.100 arcmin
+γ0         | 0.999 ± 0.002 arcmin
 
                     
 
@@ -54,8 +54,8 @@ FWHM       | 70.447 ± 0.129 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.556 ± 0.162 arcmin
-γ0         | 0.999 ± 0.002 arcmin
+FWHM       | 70.521 ± 0.137 arcmin
+γ0         | 1.000 ± 0.001 arcmin
 
                     
 
@@ -65,7 +65,7 @@ FWHM       | 70.556 ± 0.162 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.525 ± 0.157 arcmin
+FWHM       | 70.505 ± 0.176 arcmin
 γ0         | 1.000 ± 0.002 arcmin
 
                     
@@ -76,7 +76,7 @@ FWHM       | 70.525 ± 0.157 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.902 ± 0.010 arcmin
+FWHM       | 28.897 ± 0.011 arcmin
 γ0         | 1.000 ± 0.000 arcmin
 
                     
@@ -87,7 +87,7 @@ FWHM       | 28.902 ± 0.010 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.898 ± 0.012 arcmin
+FWHM       | 28.897 ± 0.009 arcmin
 γ0         | 1.000 ± 0.000 arcmin
 
                     
@@ -98,7 +98,7 @@ FWHM       | 28.898 ± 0.012 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.903 ± 0.014 arcmin
+FWHM       | 28.903 ± 0.010 arcmin
 γ0         | 1.000 ± 0.000 arcmin
 
                     
@@ -109,7 +109,7 @@ FWHM       | 28.903 ± 0.014 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.901 ± 0.013 arcmin
+FWHM       | 28.903 ± 0.007 arcmin
 γ0         | 1.000 ± 0.000 arcmin
 
                     
@@ -120,7 +120,7 @@ FWHM       | 28.901 ± 0.013 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.901 ± 0.013 arcmin
+FWHM       | 28.902 ± 0.014 arcmin
 γ0         | 1.000 ± 0.000 arcmin
 
                     
@@ -131,8 +131,8 @@ FWHM       | 28.901 ± 0.013 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.878 ± 0.034 arcmin
-γ0         | 1.000 ± 0.001 arcmin
+FWHM       | 17.892 ± 0.031 arcmin
+γ0         | 1.001 ± 0.001 arcmin
 
                     
 
@@ -142,8 +142,8 @@ FWHM       | 17.878 ± 0.034 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.894 ± 0.033 arcmin
-γ0         | 1.000 ± 0.002 arcmin
+FWHM       | 17.899 ± 0.036 arcmin
+γ0         | 0.999 ± 0.002 arcmin
 
                     
 
@@ -153,8 +153,8 @@ FWHM       | 17.894 ± 0.033 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.893 ± 0.041 arcmin
-γ0         | 1.001 ± 0.002 arcmin
+FWHM       | 17.887 ± 0.026 arcmin
+γ0         | 1.000 ± 0.002 arcmin
 
                     
 
@@ -164,7 +164,7 @@ FWHM       | 17.893 ± 0.041 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.904 ± 0.037 arcmin
+FWHM       | 17.892 ± 0.024 arcmin
 γ0         | 1.000 ± 0.002 arcmin
 
                     
@@ -175,8 +175,8 @@ FWHM       | 17.904 ± 0.037 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.914 ± 0.028 arcmin
-γ0         | 0.999 ± 0.002 arcmin
+FWHM       | 17.897 ± 0.035 arcmin
+γ0         | 1.000 ± 0.002 arcmin
 
                     
 
@@ -186,8 +186,8 @@ FWHM       | 17.914 ± 0.028 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.947 ± 1.158 arcmin
-γ0         | 1.001 ± 0.018 arcmin
+FWHM       | 70.266 ± 1.286 arcmin
+γ0         | 1.011 ± 0.017 arcmin
 
                     
 
@@ -197,8 +197,8 @@ FWHM       | 70.947 ± 1.158 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 69.815 ± 0.947 arcmin
-γ0         | 1.005 ± 0.014 arcmin
+FWHM       | 70.486 ± 1.222 arcmin
+γ0         | 0.996 ± 0.024 arcmin
 
                     
 
@@ -208,8 +208,8 @@ FWHM       | 69.815 ± 0.947 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.363 ± 0.800 arcmin
-γ0         | 1.000 ± 0.020 arcmin
+FWHM       | 70.683 ± 0.900 arcmin
+γ0         | 1.002 ± 0.016 arcmin
 
                     
 
@@ -219,8 +219,8 @@ FWHM       | 70.363 ± 0.800 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.152 ± 1.239 arcmin
-γ0         | 1.003 ± 0.019 arcmin
+FWHM       | 70.065 ± 1.647 arcmin
+γ0         | 1.011 ± 0.020 arcmin
 
                     
 
@@ -230,8 +230,8 @@ FWHM       | 70.152 ± 1.239 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.124 ± 1.434 arcmin
-γ0         | 0.999 ± 0.019 arcmin
+FWHM       | 71.307 ± 1.336 arcmin
+γ0         | 0.990 ± 0.026 arcmin
 
                     
 
@@ -241,8 +241,8 @@ FWHM       | 70.124 ± 1.434 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.899 ± 0.129 arcmin
-γ0         | 0.999 ± 0.005 arcmin
+FWHM       | 28.948 ± 0.122 arcmin
+γ0         | 0.999 ± 0.004 arcmin
 
                     
 
@@ -252,7 +252,7 @@ FWHM       | 28.899 ± 0.129 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.877 ± 0.112 arcmin
+FWHM       | 28.886 ± 0.108 arcmin
 γ0         | 1.000 ± 0.004 arcmin
 
                     
@@ -263,8 +263,8 @@ FWHM       | 28.877 ± 0.112 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.888 ± 0.105 arcmin
-γ0         | 1.001 ± 0.003 arcmin
+FWHM       | 28.929 ± 0.136 arcmin
+γ0         | 0.999 ± 0.004 arcmin
 
                     
 
@@ -274,8 +274,8 @@ FWHM       | 28.888 ± 0.105 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.918 ± 0.081 arcmin
-γ0         | 0.999 ± 0.003 arcmin
+FWHM       | 28.843 ± 0.075 arcmin
+γ0         | 1.001 ± 0.004 arcmin
 
                     
 
@@ -285,8 +285,8 @@ FWHM       | 28.918 ± 0.081 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.886 ± 0.092 arcmin
-γ0         | 0.999 ± 0.003 arcmin
+FWHM       | 28.867 ± 0.112 arcmin
+γ0         | 0.999 ± 0.004 arcmin
 
                     
 
@@ -296,8 +296,8 @@ FWHM       | 28.886 ± 0.092 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.960 ± 0.299 arcmin
-γ0         | 0.999 ± 0.016 arcmin
+FWHM       | 17.862 ± 0.395 arcmin
+γ0         | 1.000 ± 0.023 arcmin
 
                     
 
@@ -307,8 +307,8 @@ FWHM       | 17.960 ± 0.299 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.086 ± 0.290 arcmin
-γ0         | 0.994 ± 0.015 arcmin
+FWHM       | 17.967 ± 0.294 arcmin
+γ0         | 0.994 ± 0.019 arcmin
 
                     
 
@@ -318,8 +318,8 @@ FWHM       | 18.086 ± 0.290 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.885 ± 0.246 arcmin
-γ0         | 0.997 ± 0.013 arcmin
+FWHM       | 17.919 ± 0.311 arcmin
+γ0         | 1.000 ± 0.014 arcmin
 
                     
 
@@ -329,8 +329,8 @@ FWHM       | 17.885 ± 0.246 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.747 ± 0.285 arcmin
-γ0         | 1.004 ± 0.014 arcmin
+FWHM       | 17.889 ± 0.304 arcmin
+γ0         | 0.996 ± 0.022 arcmin
 
                     
 
@@ -340,8 +340,8 @@ FWHM       | 17.747 ± 0.285 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.780 ± 0.325 arcmin
-γ0         | 1.006 ± 0.021 arcmin
+FWHM       | 17.799 ± 0.281 arcmin
+γ0         | 1.003 ± 0.009 arcmin
 
                     
 
@@ -351,8 +351,8 @@ FWHM       | 17.780 ± 0.325 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.779 ± 1.098 arcmin
-γ0         | 1.000 ± 0.021 arcmin
+FWHM       | 70.605 ± 1.403 arcmin
+γ0         | 0.994 ± 0.018 arcmin
 
                     
 
@@ -362,8 +362,8 @@ FWHM       | 70.779 ± 1.098 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.576 ± 1.030 arcmin
-γ0         | 1.000 ± 0.022 arcmin
+FWHM       | 70.333 ± 1.347 arcmin
+γ0         | 1.003 ± 0.017 arcmin
 
                     
 
@@ -373,8 +373,8 @@ FWHM       | 70.576 ± 1.030 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.620 ± 1.332 arcmin
-γ0         | 1.003 ± 0.018 arcmin
+FWHM       | 70.384 ± 1.384 arcmin
+γ0         | 0.998 ± 0.018 arcmin
 
                     
 
@@ -384,8 +384,8 @@ FWHM       | 70.620 ± 1.332 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.505 ± 1.594 arcmin
-γ0         | 1.003 ± 0.014 arcmin
+FWHM       | 70.674 ± 0.912 arcmin
+γ0         | 0.995 ± 0.020 arcmin
 
                     
 
@@ -395,8 +395,8 @@ FWHM       | 70.505 ± 1.594 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.713 ± 1.205 arcmin
-γ0         | 1.007 ± 0.018 arcmin
+FWHM       | 69.881 ± 1.358 arcmin
+γ0         | 1.010 ± 0.024 arcmin
 
                     
 
@@ -406,8 +406,8 @@ FWHM       | 70.713 ± 1.205 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.900 ± 0.088 arcmin
-γ0         | 1.001 ± 0.003 arcmin
+FWHM       | 28.895 ± 0.088 arcmin
+γ0         | 1.000 ± 0.003 arcmin
 
                     
 
@@ -417,8 +417,8 @@ FWHM       | 28.900 ± 0.088 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.927 ± 0.090 arcmin
-γ0         | 1.001 ± 0.003 arcmin
+FWHM       | 28.865 ± 0.100 arcmin
+γ0         | 1.000 ± 0.003 arcmin
 
                     
 
@@ -428,8 +428,8 @@ FWHM       | 28.927 ± 0.090 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.946 ± 0.094 arcmin
-γ0         | 0.999 ± 0.004 arcmin
+FWHM       | 28.876 ± 0.096 arcmin
+γ0         | 1.002 ± 0.003 arcmin
 
                     
 
@@ -439,8 +439,8 @@ FWHM       | 28.946 ± 0.094 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.898 ± 0.085 arcmin
-γ0         | 1.000 ± 0.003 arcmin
+FWHM       | 28.884 ± 0.127 arcmin
+γ0         | 1.001 ± 0.004 arcmin
 
                     
 
@@ -450,8 +450,8 @@ FWHM       | 28.898 ± 0.085 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.952 ± 0.082 arcmin
-γ0         | 1.000 ± 0.004 arcmin
+FWHM       | 28.876 ± 0.098 arcmin
+γ0         | 1.000 ± 0.003 arcmin
 
                     
 
@@ -461,8 +461,8 @@ FWHM       | 28.952 ± 0.082 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.971 ± 0.248 arcmin
-γ0         | 1.001 ± 0.012 arcmin
+FWHM       | 17.954 ± 0.319 arcmin
+γ0         | 1.007 ± 0.015 arcmin
 
                     
 
@@ -472,8 +472,8 @@ FWHM       | 17.971 ± 0.248 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.968 ± 0.250 arcmin
-γ0         | 0.999 ± 0.012 arcmin
+FWHM       | 17.887 ± 0.287 arcmin
+γ0         | 1.002 ± 0.017 arcmin
 
                     
 
@@ -483,8 +483,8 @@ FWHM       | 17.968 ± 0.250 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.896 ± 0.149 arcmin
-γ0         | 0.997 ± 0.012 arcmin
+FWHM       | 17.836 ± 0.302 arcmin
+γ0         | 1.001 ± 0.016 arcmin
 
                     
 
@@ -494,8 +494,8 @@ FWHM       | 17.896 ± 0.149 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.013 ± 0.333 arcmin
-γ0         | 1.002 ± 0.014 arcmin
+FWHM       | 17.887 ± 0.257 arcmin
+γ0         | 1.002 ± 0.011 arcmin
 
                     
 
@@ -505,8 +505,8 @@ FWHM       | 18.013 ± 0.333 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.002 ± 0.284 arcmin
-γ0         | 1.000 ± 0.012 arcmin
+FWHM       | 17.964 ± 0.249 arcmin
+γ0         | 0.996 ± 0.015 arcmin
 
                     
 
@@ -540,5 +540,5 @@ FWHM       | 18.002 ± 0.284 arcmin
     (_{commit_message}_, by {author})
 ---
 
-Report written on 2021-01-27 19:08:15
+Report written on 2021-01-28 09:51:22
 
