@@ -30,6 +30,18 @@ matplotlib.use("Agg")
 import matplotlib.pylab as plt
 import matplotlib.pyplot as plot
 
+PLANET_RADIUS = {
+    "jupiter" : 7.1492e+07,
+    "neptune" : 2.4622e+07,
+    "uranus" : 2.5362e+07
+}
+
+TELESCOPES = {
+    "low" : "LFT/L1-040",
+    "mid" : "MFT/M2-166",
+    "high" : "HFT/H3-402"
+}
+
 @dataclass
 class Parameters:
     planet_name: str
@@ -50,12 +62,7 @@ def end_fig():
     plt.close()
 
 def get_radius(planet):
-    if planet == "jupiter":
-        return 7.1492e7
-    elif planet == "neptune":
-        return 2.4622e7
-    else:
-        return 2.5362e7
+    return PLANET_RADIUS[planet]
 
 def get_telescope(frequency):
     if frequency == "low":
@@ -69,7 +76,7 @@ def check_planet(planet):
     planet = planet.lower()
     valid = ["jupiter","neptune","uranus"]
     if planet not in valid:
-        raise ValueError(planet)
+        raise ValueError(f"Invalid planet {planet}")
     radius = get_radius(planet)
     return (planet,radius)
 
@@ -500,7 +507,7 @@ FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
                 [data[0] for data in planet_dict[f]],
                 [data[1] for data in planet_dict[f]]
             )
-            plot.savefig(f"results/figures/{p}.png")
+            plot.savefig(f"/results/figures/{p}.png")
 
         sim2.append_to_report(
             """
