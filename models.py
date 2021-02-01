@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
-import logger
 
 def fig_hist(data,ylabels, xvalues, title=''):
     figure, ax = plt.subplots()
@@ -116,7 +115,6 @@ class Information():
 class Data():
     def __init__(self,debug=False):
         self.debug = debug
-        self.l = logger.Logger()
         self.valid_freqs = ["low","mid","high"]
         self.valid_planets = ["jupiter","neptune","uranus"]
         self.debug = True
@@ -135,7 +133,7 @@ class Data():
             "mid" : [],
             "high" : []
         }
-    
+    """
     def __setitem__(self,item,value):
         if self.debug:
             l.info(f"Set {item} to {value}")
@@ -143,6 +141,7 @@ class Data():
     def __getitem__(self,item):
         if self.debug:
             l.info(f"Received key {item}")
+    """
     
     def check_planet(self,planet):
         if not isinstance(planet,str):

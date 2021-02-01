@@ -15,7 +15,14 @@ from typing import Dict, Any, List, Union
 import subprocess as s
 import markdown as md
 
-import logger
+import logging
+logging.basicConfig(
+    level = logging.INFO,
+    format = '[%(asctime)s] %(levelname)s: %(message)s',
+    datefmt = '%m/%d/%Y %H:%M:%S'
+)
+
+
 from tqdm import tqdm
 
 import litebird_sim as lbs
@@ -305,7 +312,6 @@ def write_to_file(filename,ecc_true,n_of_runs,ecc_estimate,fwhm,fwhm_error):
 def compute(i,tot,data_path: Path):
     angle_data= []
     ampl_data = []
-    l = logger.Logger(colors=True)
     info = models.Information()
     sim = lbs.Simulation(
         parameter_file=str(data_path),
@@ -325,10 +331,10 @@ noise/optical properties of a detector.
     copyfile(
         src=params.sed_file_name, dst=sim.base_path / params.sed_file_name.name,
     )
-    l.header(f"Starting simulation {i} of {tot}")
-    l.info(f"Planet: {params.planet_name}")
-    l.info(f"Frequency: {str(_frequency)}")
-    l.info(f"Inclination angle: {params.inclination}")
+    logging.debug(f"Starting simulation {i} of {tot}")
+    logging.info(f"Planet: {params.planet_name}")
+    logging.info(f"Frequency: {str(_frequency)}")
+    logging.info(f"Inclination angle: {params.inclination}")
 
     # Calculate the brightness temperature of the planet over the band
     sed_data = np.loadtxt(params.sed_file_name, delimiter=",")
@@ -513,7 +519,7 @@ FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
             """
 ## {{planet}} plot
 
-![](results/figures/{{planet}}.png)
+![](figures/{{planet}}.png)
             """,
             planet = p
         )
