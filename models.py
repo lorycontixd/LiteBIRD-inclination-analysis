@@ -14,6 +14,24 @@ def fig_hist(data,ylabels, xvalues, title=''):
 def fig_plot(xdata,ydata,xlabels,ylabels,title=""):
     pass
 
+def rad2arcmin(x):
+    if isinstance(x,(list,tuple)):
+        t = type(x)
+        return t([item*3437.75 for item in x])
+    elif isinstance(x,(float,int)):
+        return x*3437.75
+    else:
+        raise TypeError(f"Invalid type {type(x)} for rad2arcmin call.")
+
+def arcmin2rad(x):
+    if isinstance(x,(list,tuple)):
+        t = type(x)
+        return t([item/3437.75 for item in x])
+    elif isinstance(x,(float,int)):
+        return x/3437.75
+    else:
+        raise TypeError(f"Invalid type {type(x)} for rad2arcmin call.")
+
 class Planet():
     def __init__(self,name=None,temperature=None,radius=None):
         super().__init__()
@@ -58,6 +76,8 @@ class Information():
             "runs",
             "fwhm",
             "fwhm_error",
+            "angle",
+            "angle_error",
             "ampl",
             "ampl_error",
             "ampl_point" #Save the point (angle, gamma) to be passed forward
@@ -113,11 +133,12 @@ class Information():
 
 
 class Data():
-    def __init__(self,debug=False):
+    def __init__(self,name="",debug=False):
+        self.name = name
         self.debug = debug
         self.valid_freqs = ["low","mid","high"]
         self.valid_planets = ["jupiter","neptune","uranus"]
-        self.debug = True
+        self.debug = debug
         self.data_jupiter = {
             "low" : [],
             "mid" : [],
@@ -142,7 +163,7 @@ class Data():
         if self.debug:
             l.info(f"Received key {item}")
     """
-    
+
     def check_planet(self,planet):
         if not isinstance(planet,str):
             raise TypeError(f"(Data) Planet must be a string, not {type(planet)}")

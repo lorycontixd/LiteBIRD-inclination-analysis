@@ -331,11 +331,12 @@ noise/optical properties of a detector.
     copyfile(
         src=params.sed_file_name, dst=sim.base_path / params.sed_file_name.name,
     )
-    logging.debug(f"Starting simulation {i} of {tot}")
+    print(" ")
+    logging.info(f"Starting simulation {i} of {tot}")
     logging.info(f"Planet: {params.planet_name}")
     logging.info(f"Frequency: {str(_frequency)}")
     logging.info(f"Inclination angle: {params.inclination}")
-
+    
     # Calculate the brightness temperature of the planet over the band
     sed_data = np.loadtxt(params.sed_file_name, delimiter=",")
     sed_fn = interpolate.interp1d(sed_data[:, 0], sed_data[:, 1],bounds_error=False,fill_value=1)
@@ -448,8 +449,11 @@ noise/optical properties of a detector.
     info.runs = len(fwhm_estimates_arcmin)
     info.fwhm = np.mean(fwhm_estimates_arcmin)
     info.fwhm_error = np.std(fwhm_estimates_arcmin)
+    info.angle = np.mean(angle_estimates)
+    info.angle_error = np.std(angle_estimates)
     info.ampl = np.mean(ampl_estimates)
     info.ampl_error = np.std(ampl_estimates)
+
     info.plots = [fwhm_plot,ampl_plot,ecc_plot,ang_plot]
     return info
 
@@ -459,10 +463,11 @@ def main():
         name = "My simulation",
         description= "Desc."
     )
-    data = models.Data() #Store simulation results (or informations)
+    angle_data = models.Data(name="angles") #Store simulation results (or informations)
+    fwhm_data = models.Data(name="fwhm")
     planets = ["jupiter","neptune","uranus"]
     frequencies = ["low","mid","high"] # Low = 40GHz, Mid = 166GHz, High = 402GHz
-    angles = [0.0,20.0,45.0,90.0,120.0]
+    angles = list(range(0,200,20))
     intro = """
 # Base information
 This report contains information about the dependency of the in-flight beam's inclination angle on planet and telescope frequency.
@@ -476,7 +481,8 @@ The document contains plots
             for a in angles:
                 create_toml(p,f,a) # Create a temporary TOML file with parameters
                 info = compute(index+1,tot,"tempfile.toml") #extract data from the simulation by passing the temporary TOML file
-                data.append_data(p,f,(info.inclination,info.ampl_error))
+                angle_data.append_data(p,f,(models.rad2arcmin(info.inclination),models.rad2arcmin(info.angle_error)))
+                fwhm_data.append_data(p,f,(models.rad2arcmin(info.inclination),info.fwhm_error))
                 index +=1
 
                 sim2.append_to_report(
@@ -487,7 +493,7 @@ Parameter  | Value
 ---------- | -----------------
 # of runs  | {{ runs }}
 FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
-γ0         | {{"%.3f"|format(ampl)}} ± {{"%.3f"|format(ampl_err)}} arcmin
+angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
 
                     """,
                     planet_name = p,
@@ -496,34 +502,58 @@ FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
                     runs = info.runs,
                     fwhm = info.fwhm,
                     fwhm_err = info.fwhm_error,
-                    ampl = info.ampl,
-                    ampl_err = info.ampl_error
+                    angle_ = models.rad2arcmin(info.angle),
+                    angle_err = models.rad2arcmin(info.angle_error)
                 )
 
-    print("Jupiter low: ",data.data_jupiter['low'])
-    print("Neptune mid: ",data.data_neptune['mid'])
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
     #At this point we have a Data objecti with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
     index2 = 0
-    fig, (ax1, ax2) = plt.subplots(1, 2)
+    
     for p in planets:
-        planet_dict = data.get_planet(p)
+        fig, (ax1, ax2) = plt.subplots(1, 2)
+        ax1.set_xlabel("Inclination angle [arcmin]")
+        ax2.set_xlabel("Inclination angle [arcmin]")
+        ax1.set_ylabel("FWHM Error [arcmin]",labelpad = -2)
+        ax2.set_ylabel("Inclination angle Error [arcmin] ",labelpad = -2)
         for f in frequencies:
-            plot.scatter(
-                [data[0] for data in planet_dict[f]],
-                [data[1] for data in planet_dict[f]]
+            ax1.scatter(
+                [data[0] for data in fwhm_data.get_planet(p)[f]],
+                [data[1] for data in fwhm_data.get_planet(p)[f]],
+                s = 12
             )
-            plot.savefig(f"/results/figures/{p}.png")
+            ax1.plot(
+               [data[0] for data in fwhm_data.get_planet(p)[f]],
+                [data[1] for data in fwhm_data.get_planet(p)[f]],
+                label = f"FWHM plot [{p}]"
+            )
+            ax2.scatter(
+                [data[0] for data in angle_data.get_planet(p)[f]],
+                [data[1] for data in angle_data.get_planet(p)[f]],
+                s = 12
+            )
+            ax2.plot(
+                [data[0] for data in angle_data.get_planet(p)[f]],
+                [data[1] for data in angle_data.get_planet(p)[f]],
+                label = f"Inclination plot [{p}]"
+            )
+        fig = plot.gcf()
+            
 
         sim2.append_to_report(
             """
 ## {{planet}} plot
 
-![](figures/{{planet}}.png)
+![]({{planet}}.png)
             """,
-            planet = p
+            figures = [
+                (fig,f'{p}.png')
+            ],
+            planet = p.capitalize()
         )
+        plot.close()
     sim2.flush()
+        
 
 if __name__ == "__main__":
     main()
