@@ -21,8 +21,8 @@ The document contains plots
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.509 ± 0.178 arcmin
-angle      | -0.157 ± 9.847 arcmin
+FWHM       | 70.636 ± 0.180 arcmin
+angle      | -2.125 ± 16.581 arcmin   [ -0.001 ± 0.005 arcmin ]
 
                     
 
@@ -32,8 +32,8 @@ angle      | -0.157 ± 9.847 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.478 ± 0.101 arcmin
-angle      | 1198.685 ± 15.466 arcmin
+FWHM       | 70.528 ± 0.121 arcmin
+angle      | 1204.886 ± 10.944 arcmin   [ 0.350 ± 0.003 arcmin ]
 
                     
 
@@ -43,8 +43,8 @@ angle      | 1198.685 ± 15.466 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.490 ± 0.133 arcmin
-angle      | 2397.667 ± 16.934 arcmin
+FWHM       | 70.498 ± 0.133 arcmin
+angle      | 2395.991 ± 15.159 arcmin   [ 0.697 ± 0.004 arcmin ]
 
                     
 
@@ -54,8 +54,8 @@ angle      | 2397.667 ± 16.934 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.516 ± 0.144 arcmin
-angle      | 3601.638 ± 13.309 arcmin
+FWHM       | 70.475 ± 0.137 arcmin
+angle      | 3602.799 ± 13.691 arcmin   [ 1.048 ± 0.004 arcmin ]
 
                     
 
@@ -65,8 +65,8 @@ angle      | 3601.638 ± 13.309 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.509 ± 0.155 arcmin
-angle      | 4799.735 ± 8.048 arcmin
+FWHM       | 70.525 ± 0.093 arcmin
+angle      | 4797.755 ± 9.653 arcmin   [ 1.396 ± 0.003 arcmin ]
 
                     
 
@@ -76,8 +76,8 @@ angle      | 4799.735 ± 8.048 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.499 ± 0.111 arcmin
-angle      | 6000.119 ± 15.874 arcmin
+FWHM       | 70.539 ± 0.130 arcmin
+angle      | 6000.869 ± 14.631 arcmin   [ 1.746 ± 0.004 arcmin ]
 
                     
 
@@ -87,8 +87,8 @@ angle      | 6000.119 ± 15.874 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.573 ± 0.147 arcmin
-angle      | 7196.319 ± 17.728 arcmin
+FWHM       | 70.454 ± 0.144 arcmin
+angle      | 7198.589 ± 11.157 arcmin   [ 2.094 ± 0.003 arcmin ]
 
                     
 
@@ -98,8 +98,8 @@ angle      | 7196.319 ± 17.728 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.552 ± 0.138 arcmin
-angle      | 8403.184 ± 16.298 arcmin
+FWHM       | 70.530 ± 0.160 arcmin
+angle      | 8405.067 ± 15.219 arcmin   [ 2.445 ± 0.004 arcmin ]
 
                     
 
@@ -109,8 +109,8 @@ angle      | 8403.184 ± 16.298 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.539 ± 0.139 arcmin
-angle      | 9597.618 ± 14.182 arcmin
+FWHM       | 70.479 ± 0.117 arcmin
+angle      | 9592.358 ± 10.123 arcmin   [ 2.790 ± 0.003 arcmin ]
 
                     
 
@@ -120,8 +120,8 @@ angle      | 9597.618 ± 14.182 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.487 ± 0.161 arcmin
-angle      | 10803.120 ± 11.743 arcmin
+FWHM       | 70.500 ± 0.166 arcmin
+angle      | 10799.867 ± 11.380 arcmin   [ 3.142 ± 0.003 arcmin ]
 
                     
 
@@ -131,8 +131,8 @@ angle      | 10803.120 ± 11.743 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.899 ± 0.009 arcmin
-angle      | -1.170 ± 2.201 arcmin
+FWHM       | 28.903 ± 0.013 arcmin
+angle      | 0.000 ± 2.831 arcmin   [ 0.000 ± 0.001 arcmin ]
 
                     
 
@@ -142,8 +142,8 @@ angle      | -1.170 ± 2.201 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.900 ± 0.009 arcmin
-angle      | 1200.099 ± 3.042 arcmin
+FWHM       | 28.894 ± 0.009 arcmin
+angle      | 1200.429 ± 3.288 arcmin   [ 0.349 ± 0.001 arcmin ]
 
                     
 
@@ -153,8 +153,8 @@ angle      | 1200.099 ± 3.042 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.898 ± 0.011 arcmin
-angle      | 2400.345 ± 1.431 arcmin
+FWHM       | 28.903 ± 0.008 arcmin
+angle      | 2399.297 ± 2.600 arcmin   [ 0.698 ± 0.001 arcmin ]
 
                     
 
@@ -164,8 +164,8 @@ angle      | 2400.345 ± 1.431 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.898 ± 0.009 arcmin
-angle      | 3599.264 ± 3.129 arcmin
+FWHM       | 28.895 ± 0.007 arcmin
+angle      | 3600.301 ± 2.971 arcmin   [ 1.047 ± 0.001 arcmin ]
 
                     
 
@@ -175,8 +175,8 @@ angle      | 3599.264 ± 3.129 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.901 ± 0.010 arcmin
-angle      | 4799.250 ± 2.850 arcmin
+FWHM       | 28.898 ± 0.009 arcmin
+angle      | 4800.606 ± 2.693 arcmin   [ 1.396 ± 0.001 arcmin ]
 
                     
 
@@ -186,8 +186,8 @@ angle      | 4799.250 ± 2.850 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.900 ± 0.009 arcmin
-angle      | 6000.449 ± 3.132 arcmin
+FWHM       | 28.905 ± 0.011 arcmin
+angle      | 5999.546 ± 2.076 arcmin   [ 1.745 ± 0.001 arcmin ]
 
                     
 
@@ -197,8 +197,8 @@ angle      | 6000.449 ± 3.132 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.902 ± 0.012 arcmin
-angle      | 7199.627 ± 1.791 arcmin
+FWHM       | 28.901 ± 0.015 arcmin
+angle      | 7201.024 ± 1.934 arcmin   [ 2.095 ± 0.001 arcmin ]
 
                     
 
@@ -208,8 +208,8 @@ angle      | 7199.627 ± 1.791 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.900 ± 0.012 arcmin
-angle      | 8400.951 ± 3.097 arcmin
+FWHM       | 28.901 ± 0.010 arcmin
+angle      | 8399.289 ± 2.298 arcmin   [ 2.443 ± 0.001 arcmin ]
 
                     
 
@@ -219,8 +219,8 @@ angle      | 8400.951 ± 3.097 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.893 ± 0.008 arcmin
-angle      | 9599.219 ± 2.834 arcmin
+FWHM       | 28.903 ± 0.011 arcmin
+angle      | 9600.575 ± 2.074 arcmin   [ 2.793 ± 0.001 arcmin ]
 
                     
 
@@ -230,8 +230,8 @@ angle      | 9599.219 ± 2.834 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.902 ± 0.010 arcmin
-angle      | 10799.486 ± 2.422 arcmin
+FWHM       | 28.904 ± 0.011 arcmin
+angle      | 10799.788 ± 2.718 arcmin   [ 3.142 ± 0.001 arcmin ]
 
                     
 
@@ -241,8 +241,8 @@ angle      | 10799.486 ± 2.422 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.896 ± 0.027 arcmin
-angle      | 3.154 ± 13.370 arcmin
+FWHM       | 17.902 ± 0.025 arcmin
+angle      | 1.036 ± 10.976 arcmin   [ 0.000 ± 0.003 arcmin ]
 
                     
 
@@ -252,8 +252,8 @@ angle      | 3.154 ± 13.370 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.893 ± 0.034 arcmin
-angle      | 1201.542 ± 8.645 arcmin
+FWHM       | 17.916 ± 0.027 arcmin
+angle      | 1199.559 ± 12.474 arcmin   [ 0.349 ± 0.004 arcmin ]
 
                     
 
@@ -263,8 +263,8 @@ angle      | 1201.542 ± 8.645 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.887 ± 0.024 arcmin
-angle      | 2401.412 ± 8.891 arcmin
+FWHM       | 17.900 ± 0.026 arcmin
+angle      | 2401.894 ± 12.611 arcmin   [ 0.699 ± 0.004 arcmin ]
 
                     
 
@@ -274,8 +274,8 @@ angle      | 2401.412 ± 8.891 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.891 ± 0.037 arcmin
-angle      | 3599.700 ± 10.775 arcmin
+FWHM       | 17.895 ± 0.028 arcmin
+angle      | 3598.230 ± 13.936 arcmin   [ 1.047 ± 0.004 arcmin ]
 
                     
 
@@ -285,8 +285,8 @@ angle      | 3599.700 ± 10.775 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.904 ± 0.032 arcmin
-angle      | 4804.488 ± 9.882 arcmin
+FWHM       | 17.893 ± 0.039 arcmin
+angle      | 4801.214 ± 10.654 arcmin   [ 1.397 ± 0.003 arcmin ]
 
                     
 
@@ -296,8 +296,8 @@ angle      | 4804.488 ± 9.882 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.904 ± 0.030 arcmin
-angle      | 6004.031 ± 9.077 arcmin
+FWHM       | 17.902 ± 0.029 arcmin
+angle      | 5995.681 ± 11.675 arcmin   [ 1.744 ± 0.003 arcmin ]
 
                     
 
@@ -307,8 +307,8 @@ angle      | 6004.031 ± 9.077 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.894 ± 0.027 arcmin
-angle      | 7201.989 ± 11.767 arcmin
+FWHM       | 17.905 ± 0.035 arcmin
+angle      | 7198.612 ± 8.125 arcmin   [ 2.094 ± 0.002 arcmin ]
 
                     
 
@@ -318,8 +318,8 @@ angle      | 7201.989 ± 11.767 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.881 ± 0.027 arcmin
-angle      | 8405.294 ± 7.356 arcmin
+FWHM       | 17.910 ± 0.030 arcmin
+angle      | 8391.243 ± 11.553 arcmin   [ 2.441 ± 0.003 arcmin ]
 
                     
 
@@ -329,8 +329,8 @@ angle      | 8405.294 ± 7.356 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.904 ± 0.035 arcmin
-angle      | 9592.851 ± 13.346 arcmin
+FWHM       | 17.890 ± 0.013 arcmin
+angle      | 9597.592 ± 13.665 arcmin   [ 2.792 ± 0.004 arcmin ]
 
                     
 
@@ -340,8 +340,8 @@ angle      | 9592.851 ± 13.346 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.888 ± 0.016 arcmin
-angle      | 10796.160 ± 8.474 arcmin
+FWHM       | 17.892 ± 0.040 arcmin
+angle      | 10796.023 ± 11.105 arcmin   [ 3.140 ± 0.003 arcmin ]
 
                     
 
@@ -351,8 +351,8 @@ angle      | 10796.160 ± 8.474 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.174 ± 1.344 arcmin
-angle      | 70.813 ± 160.822 arcmin
+FWHM       | 70.423 ± 1.558 arcmin
+angle      | 40.122 ± 104.706 arcmin   [ 0.012 ± 0.030 arcmin ]
 
                     
 
@@ -362,8 +362,8 @@ angle      | 70.813 ± 160.822 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.085 ± 1.543 arcmin
-angle      | 1254.775 ± 140.054 arcmin
+FWHM       | 70.564 ± 1.106 arcmin
+angle      | 1216.895 ± 132.777 arcmin   [ 0.354 ± 0.039 arcmin ]
 
                     
 
@@ -373,8 +373,8 @@ angle      | 1254.775 ± 140.054 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.857 ± 1.329 arcmin
-angle      | 2451.476 ± 127.123 arcmin
+FWHM       | 71.094 ± 1.314 arcmin
+angle      | 2367.533 ± 114.506 arcmin   [ 0.689 ± 0.033 arcmin ]
 
                     
 
@@ -384,8 +384,8 @@ angle      | 2451.476 ± 127.123 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.667 ± 0.883 arcmin
-angle      | 3600.788 ± 98.704 arcmin
+FWHM       | 70.065 ± 1.197 arcmin
+angle      | 3630.657 ± 128.161 arcmin   [ 1.056 ± 0.037 arcmin ]
 
                     
 
@@ -395,8 +395,8 @@ angle      | 3600.788 ± 98.704 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 69.688 ± 1.234 arcmin
-angle      | 4728.978 ± 162.103 arcmin
+FWHM       | 70.515 ± 1.118 arcmin
+angle      | 4791.097 ± 146.332 arcmin   [ 1.394 ± 0.043 arcmin ]
 
                     
 
@@ -406,8 +406,8 @@ angle      | 4728.978 ± 162.103 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 71.044 ± 1.149 arcmin
-angle      | 5954.630 ± 115.839 arcmin
+FWHM       | 69.965 ± 1.413 arcmin
+angle      | 6015.809 ± 193.724 arcmin   [ 1.750 ± 0.056 arcmin ]
 
                     
 
@@ -417,8 +417,8 @@ angle      | 5954.630 ± 115.839 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.514 ± 1.235 arcmin
-angle      | 7192.937 ± 109.817 arcmin
+FWHM       | 70.731 ± 1.337 arcmin
+angle      | 7173.402 ± 149.849 arcmin   [ 2.087 ± 0.044 arcmin ]
 
                     
 
@@ -428,8 +428,8 @@ angle      | 7192.937 ± 109.817 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.366 ± 1.513 arcmin
-angle      | 8427.379 ± 122.681 arcmin
+FWHM       | 70.212 ± 1.208 arcmin
+angle      | 8394.745 ± 140.635 arcmin   [ 2.442 ± 0.041 arcmin ]
 
                     
 
@@ -439,8 +439,8 @@ angle      | 8427.379 ± 122.681 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.684 ± 1.051 arcmin
-angle      | 9592.463 ± 218.897 arcmin
+FWHM       | 70.008 ± 1.318 arcmin
+angle      | 9614.149 ± 120.633 arcmin   [ 2.797 ± 0.035 arcmin ]
 
                     
 
@@ -450,8 +450,8 @@ angle      | 9592.463 ± 218.897 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 69.740 ± 1.882 arcmin
-angle      | 10870.040 ± 142.026 arcmin
+FWHM       | 70.025 ± 1.151 arcmin
+angle      | 10817.897 ± 153.435 arcmin   [ 3.147 ± 0.045 arcmin ]
 
                     
 
@@ -461,8 +461,8 @@ angle      | 10870.040 ± 142.026 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.876 ± 0.118 arcmin
-angle      | 4.807 ± 32.604 arcmin
+FWHM       | 28.897 ± 0.093 arcmin
+angle      | 2.779 ± 24.023 arcmin   [ 0.001 ± 0.007 arcmin ]
 
                     
 
@@ -472,8 +472,8 @@ angle      | 4.807 ± 32.604 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.944 ± 0.101 arcmin
-angle      | 1199.712 ± 22.042 arcmin
+FWHM       | 28.889 ± 0.066 arcmin
+angle      | 1194.348 ± 23.367 arcmin   [ 0.347 ± 0.007 arcmin ]
 
                     
 
@@ -483,8 +483,8 @@ angle      | 1199.712 ± 22.042 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.948 ± 0.111 arcmin
-angle      | 2417.010 ± 25.990 arcmin
+FWHM       | 28.929 ± 0.081 arcmin
+angle      | 2400.196 ± 26.197 arcmin   [ 0.698 ± 0.008 arcmin ]
 
                     
 
@@ -494,8 +494,8 @@ angle      | 2417.010 ± 25.990 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.901 ± 0.118 arcmin
-angle      | 3604.252 ± 33.654 arcmin
+FWHM       | 28.883 ± 0.104 arcmin
+angle      | 3611.355 ± 16.592 arcmin   [ 1.050 ± 0.005 arcmin ]
 
                     
 
@@ -505,8 +505,8 @@ angle      | 3604.252 ± 33.654 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.935 ± 0.092 arcmin
-angle      | 4782.254 ± 21.811 arcmin
+FWHM       | 28.919 ± 0.110 arcmin
+angle      | 4802.470 ± 20.751 arcmin   [ 1.397 ± 0.006 arcmin ]
 
                     
 
@@ -516,8 +516,8 @@ angle      | 4782.254 ± 21.811 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.885 ± 0.100 arcmin
-angle      | 5995.546 ± 19.101 arcmin
+FWHM       | 28.913 ± 0.092 arcmin
+angle      | 6011.643 ± 24.721 arcmin   [ 1.749 ± 0.007 arcmin ]
 
                     
 
@@ -527,8 +527,8 @@ angle      | 5995.546 ± 19.101 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.913 ± 0.116 arcmin
-angle      | 7196.092 ± 29.633 arcmin
+FWHM       | 28.866 ± 0.106 arcmin
+angle      | 7200.750 ± 30.600 arcmin   [ 2.095 ± 0.009 arcmin ]
 
                     
 
@@ -538,8 +538,8 @@ angle      | 7196.092 ± 29.633 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.848 ± 0.093 arcmin
-angle      | 8395.819 ± 29.116 arcmin
+FWHM       | 28.873 ± 0.098 arcmin
+angle      | 8391.539 ± 23.771 arcmin   [ 2.441 ± 0.007 arcmin ]
 
                     
 
@@ -549,8 +549,8 @@ angle      | 8395.819 ± 29.116 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.875 ± 0.114 arcmin
-angle      | 9593.281 ± 22.551 arcmin
+FWHM       | 28.918 ± 0.120 arcmin
+angle      | 9597.227 ± 30.546 arcmin   [ 2.792 ± 0.009 arcmin ]
 
                     
 
@@ -560,8 +560,8 @@ angle      | 9593.281 ± 22.551 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.942 ± 0.096 arcmin
-angle      | 10814.518 ± 18.810 arcmin
+FWHM       | 28.899 ± 0.099 arcmin
+angle      | 10802.669 ± 20.230 arcmin   [ 3.142 ± 0.006 arcmin ]
 
                     
 
@@ -571,8 +571,8 @@ angle      | 10814.518 ± 18.810 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.822 ± 0.239 arcmin
-angle      | -24.157 ± 104.125 arcmin
+FWHM       | 18.066 ± 0.261 arcmin
+angle      | -23.618 ± 114.996 arcmin   [ -0.007 ± 0.033 arcmin ]
 
                     
 
@@ -582,8 +582,8 @@ angle      | -24.157 ± 104.125 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.953 ± 0.220 arcmin
-angle      | 1133.626 ± 125.862 arcmin
+FWHM       | 17.984 ± 0.257 arcmin
+angle      | 1165.636 ± 76.963 arcmin   [ 0.339 ± 0.022 arcmin ]
 
                     
 
@@ -593,8 +593,8 @@ angle      | 1133.626 ± 125.862 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.938 ± 0.275 arcmin
-angle      | 2426.884 ± 92.585 arcmin
+FWHM       | 17.925 ± 0.269 arcmin
+angle      | 2427.435 ± 139.871 arcmin   [ 0.706 ± 0.041 arcmin ]
 
                     
 
@@ -604,8 +604,8 @@ angle      | 2426.884 ± 92.585 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.894 ± 0.271 arcmin
-angle      | 3614.404 ± 88.593 arcmin
+FWHM       | 17.932 ± 0.259 arcmin
+angle      | 3527.831 ± 122.670 arcmin   [ 1.026 ± 0.036 arcmin ]
 
                     
 
@@ -615,8 +615,8 @@ angle      | 3614.404 ± 88.593 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.959 ± 0.321 arcmin
-angle      | 4750.055 ± 120.112 arcmin
+FWHM       | 17.860 ± 0.322 arcmin
+angle      | 4816.472 ± 120.049 arcmin   [ 1.401 ± 0.035 arcmin ]
 
                     
 
@@ -626,8 +626,8 @@ angle      | 4750.055 ± 120.112 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.866 ± 0.305 arcmin
-angle      | 5993.625 ± 89.215 arcmin
+FWHM       | 17.821 ± 0.233 arcmin
+angle      | 6030.561 ± 122.523 arcmin   [ 1.754 ± 0.036 arcmin ]
 
                     
 
@@ -637,8 +637,8 @@ angle      | 5993.625 ± 89.215 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.026 ± 0.325 arcmin
-angle      | 7181.196 ± 115.596 arcmin
+FWHM       | 17.984 ± 0.328 arcmin
+angle      | 7208.267 ± 117.639 arcmin   [ 2.097 ± 0.034 arcmin ]
 
                     
 
@@ -648,8 +648,8 @@ angle      | 7181.196 ± 115.596 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.999 ± 0.268 arcmin
-angle      | 8406.015 ± 122.946 arcmin
+FWHM       | 17.947 ± 0.276 arcmin
+angle      | 8414.570 ± 89.873 arcmin   [ 2.448 ± 0.026 arcmin ]
 
                     
 
@@ -659,8 +659,8 @@ angle      | 8406.015 ± 122.946 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.959 ± 0.312 arcmin
-angle      | 9622.948 ± 89.282 arcmin
+FWHM       | 17.861 ± 0.303 arcmin
+angle      | 9604.586 ± 130.594 arcmin   [ 2.794 ± 0.038 arcmin ]
 
                     
 
@@ -670,8 +670,8 @@ angle      | 9622.948 ± 89.282 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.874 ± 0.277 arcmin
-angle      | 10777.016 ± 93.372 arcmin
+FWHM       | 17.851 ± 0.242 arcmin
+angle      | 10766.066 ± 81.656 arcmin   [ 3.132 ± 0.024 arcmin ]
 
                     
 
@@ -681,8 +681,8 @@ angle      | 10777.016 ± 93.372 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.919 ± 1.334 arcmin
-angle      | 33.406 ± 84.317 arcmin
+FWHM       | 70.006 ± 0.886 arcmin
+angle      | -18.449 ± 114.167 arcmin   [ -0.005 ± 0.033 arcmin ]
 
                     
 
@@ -692,8 +692,8 @@ angle      | 33.406 ± 84.317 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.197 ± 1.436 arcmin
-angle      | 1257.819 ± 138.796 arcmin
+FWHM       | 71.376 ± 1.295 arcmin
+angle      | 1151.212 ± 88.811 arcmin   [ 0.335 ± 0.026 arcmin ]
 
                     
 
@@ -703,8 +703,8 @@ angle      | 1257.819 ± 138.796 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 71.036 ± 1.217 arcmin
-angle      | 2401.914 ± 116.356 arcmin
+FWHM       | 70.257 ± 1.002 arcmin
+angle      | 2414.359 ± 98.401 arcmin   [ 0.702 ± 0.029 arcmin ]
 
                     
 
@@ -714,8 +714,8 @@ angle      | 2401.914 ± 116.356 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.543 ± 1.284 arcmin
-angle      | 3654.871 ± 89.026 arcmin
+FWHM       | 69.939 ± 1.485 arcmin
+angle      | 3619.266 ± 130.549 arcmin   [ 1.053 ± 0.038 arcmin ]
 
                     
 
@@ -725,8 +725,8 @@ angle      | 3654.871 ± 89.026 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.076 ± 0.797 arcmin
-angle      | 4780.234 ± 145.586 arcmin
+FWHM       | 70.339 ± 1.294 arcmin
+angle      | 4773.466 ± 109.406 arcmin   [ 1.389 ± 0.032 arcmin ]
 
                     
 
@@ -736,8 +736,8 @@ angle      | 4780.234 ± 145.586 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.814 ± 1.442 arcmin
-angle      | 5985.481 ± 104.605 arcmin
+FWHM       | 70.819 ± 1.170 arcmin
+angle      | 5985.175 ± 115.852 arcmin   [ 1.741 ± 0.034 arcmin ]
 
                     
 
@@ -747,8 +747,8 @@ angle      | 5985.481 ± 104.605 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.627 ± 0.979 arcmin
-angle      | 7234.607 ± 140.384 arcmin
+FWHM       | 71.097 ± 1.103 arcmin
+angle      | 7207.984 ± 97.857 arcmin   [ 2.097 ± 0.028 arcmin ]
 
                     
 
@@ -758,8 +758,8 @@ angle      | 7234.607 ± 140.384 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.705 ± 0.926 arcmin
-angle      | 8395.437 ± 147.787 arcmin
+FWHM       | 70.774 ± 1.397 arcmin
+angle      | 8438.550 ± 97.891 arcmin   [ 2.455 ± 0.028 arcmin ]
 
                     
 
@@ -769,8 +769,8 @@ angle      | 8395.437 ± 147.787 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 71.123 ± 1.269 arcmin
-angle      | 9596.262 ± 115.614 arcmin
+FWHM       | 70.750 ± 1.442 arcmin
+angle      | 9575.273 ± 119.859 arcmin   [ 2.785 ± 0.035 arcmin ]
 
                     
 
@@ -780,8 +780,8 @@ angle      | 9596.262 ± 115.614 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 70.274 ± 1.076 arcmin
-angle      | 10812.885 ± 104.873 arcmin
+FWHM       | 70.515 ± 1.455 arcmin
+angle      | 10788.912 ± 109.618 arcmin   [ 3.138 ± 0.032 arcmin ]
 
                     
 
@@ -791,8 +791,8 @@ angle      | 10812.885 ± 104.873 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.895 ± 0.101 arcmin
-angle      | 0.964 ± 26.297 arcmin
+FWHM       | 28.871 ± 0.096 arcmin
+angle      | 4.964 ± 19.748 arcmin   [ 0.001 ± 0.006 arcmin ]
 
                     
 
@@ -802,8 +802,8 @@ angle      | 0.964 ± 26.297 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.901 ± 0.100 arcmin
-angle      | 1197.934 ± 20.575 arcmin
+FWHM       | 28.947 ± 0.087 arcmin
+angle      | 1197.642 ± 22.113 arcmin   [ 0.348 ± 0.006 arcmin ]
 
                     
 
@@ -813,8 +813,8 @@ angle      | 1197.934 ± 20.575 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.930 ± 0.112 arcmin
-angle      | 2384.929 ± 21.205 arcmin
+FWHM       | 28.886 ± 0.099 arcmin
+angle      | 2397.324 ± 26.072 arcmin   [ 0.697 ± 0.008 arcmin ]
 
                     
 
@@ -824,8 +824,8 @@ angle      | 2384.929 ± 21.205 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.898 ± 0.091 arcmin
-angle      | 3600.983 ± 18.775 arcmin
+FWHM       | 28.902 ± 0.101 arcmin
+angle      | 3590.089 ± 14.683 arcmin   [ 1.044 ± 0.004 arcmin ]
 
                     
 
@@ -835,8 +835,8 @@ angle      | 3600.983 ± 18.775 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.894 ± 0.141 arcmin
-angle      | 4804.197 ± 15.516 arcmin
+FWHM       | 28.878 ± 0.106 arcmin
+angle      | 4799.452 ± 18.494 arcmin   [ 1.396 ± 0.005 arcmin ]
 
                     
 
@@ -846,8 +846,8 @@ angle      | 4804.197 ± 15.516 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.832 ± 0.092 arcmin
-angle      | 6000.994 ± 28.510 arcmin
+FWHM       | 28.902 ± 0.092 arcmin
+angle      | 6001.958 ± 24.685 arcmin   [ 1.746 ± 0.007 arcmin ]
 
                     
 
@@ -857,8 +857,8 @@ angle      | 6000.994 ± 28.510 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.840 ± 0.147 arcmin
-angle      | 7197.806 ± 18.794 arcmin
+FWHM       | 28.909 ± 0.096 arcmin
+angle      | 7200.512 ± 16.518 arcmin   [ 2.095 ± 0.005 arcmin ]
 
                     
 
@@ -868,8 +868,8 @@ angle      | 7197.806 ± 18.794 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.888 ± 0.125 arcmin
-angle      | 8405.709 ± 21.589 arcmin
+FWHM       | 28.907 ± 0.075 arcmin
+angle      | 8400.144 ± 24.228 arcmin   [ 2.444 ± 0.007 arcmin ]
 
                     
 
@@ -879,8 +879,8 @@ angle      | 8405.709 ± 21.589 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.899 ± 0.099 arcmin
-angle      | 9602.213 ± 25.259 arcmin
+FWHM       | 28.867 ± 0.085 arcmin
+angle      | 9593.517 ± 21.592 arcmin   [ 2.791 ± 0.006 arcmin ]
 
                     
 
@@ -890,8 +890,8 @@ angle      | 9602.213 ± 25.259 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 28.863 ± 0.079 arcmin
-angle      | 10809.244 ± 13.426 arcmin
+FWHM       | 28.860 ± 0.071 arcmin
+angle      | 10809.114 ± 15.221 arcmin   [ 3.144 ± 0.004 arcmin ]
 
                     
 
@@ -901,8 +901,8 @@ angle      | 10809.244 ± 13.426 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.844 ± 0.227 arcmin
-angle      | 30.641 ± 100.114 arcmin
+FWHM       | 17.910 ± 0.182 arcmin
+angle      | -29.102 ± 110.020 arcmin   [ -0.008 ± 0.032 arcmin ]
 
                     
 
@@ -912,8 +912,8 @@ angle      | 30.641 ± 100.114 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.932 ± 0.238 arcmin
-angle      | 1196.753 ± 71.700 arcmin
+FWHM       | 17.837 ± 0.267 arcmin
+angle      | 1215.661 ± 153.186 arcmin   [ 0.354 ± 0.045 arcmin ]
 
                     
 
@@ -923,8 +923,8 @@ angle      | 1196.753 ± 71.700 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.962 ± 0.299 arcmin
-angle      | 2414.262 ± 105.974 arcmin
+FWHM       | 17.868 ± 0.199 arcmin
+angle      | 2447.651 ± 88.701 arcmin   [ 0.712 ± 0.026 arcmin ]
 
                     
 
@@ -934,8 +934,8 @@ angle      | 2414.262 ± 105.974 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.034 ± 0.230 arcmin
-angle      | 3615.689 ± 93.888 arcmin
+FWHM       | 17.781 ± 0.276 arcmin
+angle      | 3567.568 ± 94.315 arcmin   [ 1.038 ± 0.027 arcmin ]
 
                     
 
@@ -945,8 +945,8 @@ angle      | 3615.689 ± 93.888 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.882 ± 0.150 arcmin
-angle      | 4795.722 ± 114.074 arcmin
+FWHM       | 18.053 ± 0.239 arcmin
+angle      | 4802.455 ± 101.658 arcmin   [ 1.397 ± 0.030 arcmin ]
 
                     
 
@@ -956,8 +956,8 @@ angle      | 4795.722 ± 114.074 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.833 ± 0.345 arcmin
-angle      | 5987.053 ± 74.829 arcmin
+FWHM       | 17.901 ± 0.287 arcmin
+angle      | 5995.700 ± 96.505 arcmin   [ 1.744 ± 0.028 arcmin ]
 
                     
 
@@ -967,8 +967,8 @@ angle      | 5987.053 ± 74.829 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.881 ± 0.276 arcmin
-angle      | 7188.236 ± 103.959 arcmin
+FWHM       | 17.915 ± 0.257 arcmin
+angle      | 7178.699 ± 107.738 arcmin   [ 2.088 ± 0.031 arcmin ]
 
                     
 
@@ -978,8 +978,8 @@ angle      | 7188.236 ± 103.959 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.880 ± 0.263 arcmin
-angle      | 8374.252 ± 85.974 arcmin
+FWHM       | 17.869 ± 0.328 arcmin
+angle      | 8389.136 ± 72.471 arcmin   [ 2.440 ± 0.021 arcmin ]
 
                     
 
@@ -989,8 +989,8 @@ angle      | 8374.252 ± 85.974 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 18.049 ± 0.242 arcmin
-angle      | 9600.889 ± 81.032 arcmin
+FWHM       | 17.925 ± 0.316 arcmin
+angle      | 9597.866 ± 94.787 arcmin   [ 2.792 ± 0.028 arcmin ]
 
                     
 
@@ -1000,8 +1000,8 @@ angle      | 9600.889 ± 81.032 arcmin
 Parameter  | Value
 ---------- | -----------------
 # of runs  | 15
-FWHM       | 17.946 ± 0.323 arcmin
-angle      | 10806.399 ± 90.030 arcmin
+FWHM       | 17.880 ± 0.238 arcmin
+angle      | 10762.190 ± 107.661 arcmin   [ 3.131 ± 0.031 arcmin ]
 
                     
 
@@ -1035,5 +1035,5 @@ angle      | 10806.399 ± 90.030 arcmin
     (_{commit_message}_, by {author})
 ---
 
-Report written on 2021-02-03 11:40:21
+Report written on 2021-02-03 19:19:28
 

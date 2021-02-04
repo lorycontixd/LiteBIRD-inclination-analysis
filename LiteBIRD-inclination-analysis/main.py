@@ -14,6 +14,9 @@ import sys
 from typing import Dict, Any, List, Union
 import subprocess as s
 import markdown as md
+from scipy.interpolate import UnivariateSpline
+import timeit
+
 
 import logging
 logging.basicConfig(
@@ -333,9 +336,9 @@ noise/optical properties of a detector.
     )
     print(" ")
     logging.info(f"Starting simulation {i} of {tot}")
-    logging.info(f"Planet: {params.planet_name}")
-    logging.info(f"Frequency: {str(_frequency)}")
-    logging.info(f"Inclination angle: {params.inclination}")
+    logging.info(f"Planet: {params.planet_name.capitalize()}")
+    logging.info(f"Frequency: {str(_frequency).capitalize()}")
+    logging.info(f"Inclination angle: {params.inclination} --> {np.rad2deg(params.inclination)}")
     
     # Calculate the brightness temperature of the planet over the band
     sed_data = np.loadtxt(params.sed_file_name, delimiter=",")
@@ -493,7 +496,7 @@ Parameter  | Value
 ---------- | -----------------
 # of runs  | {{ runs }}
 FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
-angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
+angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   [ {{"%.3f"|format(angle_2)}} ± {{"%.3f"|format(angle_err2)}} arcmin ]
 
                     """,
                     planet_name = p,
@@ -503,7 +506,9 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
                     fwhm = info.fwhm,
                     fwhm_err = info.fwhm_error,
                     angle_ = models.rad2arcmin(info.angle),
-                    angle_err = models.rad2arcmin(info.angle_error)
+                    angle_err = models.rad2arcmin(info.angle_error),
+                    angle_2 = info.angle,
+                    angle_err2 = info.angle_error
                 )
 
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
@@ -514,7 +519,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
         fig, (ax1, ax2) = plt.subplots(1, 2)
         ax1.set_xlabel("Inclination angle [arcmin]")
         ax2.set_xlabel("Inclination angle [arcmin]")
-        ax1.set_ylabel("FWHM Error [arcmin]",labelpad = -2)
+        ax1.set_ylabel("FWHM Error [arcmin]", labelpad = -2)
         ax2.set_ylabel("Inclination angle Error [arcmin] ",labelpad = -2)
         for f in frequencies:
             ax1.scatter(
@@ -523,10 +528,14 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
                 s = 12
             )
             ax1.plot(
-               [data[0] for data in fwhm_data.get_planet(p)[f]],
+                [data[0] for data in fwhm_data.get_planet(p)[f]],
                 [data[1] for data in fwhm_data.get_planet(p)[f]],
                 label = f"FWHM plot [{p}]"
             )
+            #s = UnivariateSpline(x, y, s=4)
+            #sx1 = np.linspace( 0, len(fwhm_data.get_planet(p)[f]), 100)
+            #sy1 = s(sx)
+            #ßplt.plot(sx1, sy1)
             ax2.scatter(
                 [data[0] for data in angle_data.get_planet(p)[f]],
                 [data[1] for data in angle_data.get_planet(p)[f]],
@@ -537,6 +546,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
                 [data[1] for data in angle_data.get_planet(p)[f]],
                 label = f"Inclination plot [{p}]"
             )
+        plt.legend()
         fig = plot.gcf()
             
 
@@ -556,4 +566,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin
         
 
 if __name__ == "__main__":
+    start = timeit.timeit()
     main()
+    end = timeit.timeit()
+    print(f"Simulation executed in {end-start} seconds.")

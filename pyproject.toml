@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "litebird_sim"
+version = "0.0.1"
+description = "Simulation tool for the inclination angle of LiteBIRD's beam"
+authors = [
+    "Lorenzo Conti <lorenzo.conti3@studenti.unimi.it",
+]
+readme = "README.MD"
+license = "MIT"
+repository = "https://github.com/lorycontixd/LiteBIRD-inclination-analysis"
+
+[tool.poetry.dependencies]
+litebird_sim = "^0.2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
