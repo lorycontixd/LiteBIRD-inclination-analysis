@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+from dataclasses import dataclass,field
 
 def fig_hist(data,ylabels, xvalues, title=''):
     figure, ax = plt.subplots()
@@ -32,108 +33,56 @@ def arcmin2rad(x):
     else:
         raise TypeError(f"Invalid type {type(x)} for rad2arcmin call.")
 
+@dataclass(init=True, repr=True)
 class Planet():
-    def __init__(self,name=None,temperature=None,radius=None):
-        super().__init__()
-        self.name = name
-        self.temperature =temperature
-        self.radius = radius
+    name: str = None
+    temperature : str = None
+    radius : int = None
 
 class Plot():
     def __init__(self,name="",figure=None):
         super().__init__()
         self.name = name
         self.figure = figure
-    """
-    @property
-    def figure(self):
-        return self.plot
 
-    @figure.getter
-    def figure(self):
-        return self.figure
-    
-    @figure.setter
-    def figure(self,f):
-        self.figure = f
-    
-    @figure.deleter
-    def figure(self):
-        del self.figure
-    """
-
-
-
+@dataclass
 class Information():
-    def __init__(
-            self,
-            **kwargs
-        ):
-        valid_keys = [
-            "planet",
-            "frequency",
-            "inclination",
-            "runs",
-            "fwhm",
-            "fwhm_error",
-            "angle",
-            "angle_error",
-            "ampl",
-            "ampl_error",
-            "ampl_point" #Save the point (angle, gamma) to be passed forward
-        ]
-        super().__init__()
-        for vk in valid_keys:
-            if vk in kwargs:
-                setattr(self,vk,kwargs[vk])
-            else:
-                setattr(self,vk,None)
-        self.plots = []
-    
-    """
-    @property
-    def planet(self):
-        return self.planet
+    planet : str = None
+    frequency : str = None
+    inclination : float = 0.0
+    runs : int = 500
+    fwhm : float = 0.0
+    fwhm_error : float = 0.0
+    angle : float = 0.0
+    angle_error : float = 0.0
+    ampl : float = 0.0
+    ampl_error : float = 0.0
+    ampl_point : tuple = (0.0,0.0)
+    plots : list = field(default_factory = lambda:[],repr = False, init = False)
 
-    @property
-    def frequency(self):
-        return self.frequency
-
-    @property
-    def inclination(self):
-        return self.inclination
-
-    @planet.setter
-    def planet(self,p:Planet):
-        self.planet = p
+    def __post_init__(self):
+        if self.planet is None:
+            raise ValueError("Planet must not be None.")
+        else:
+            valid = ["jupiter","neptune","uranus"]
+            if self.planet.lower() not in valid:
+                raise ValueError(f"Planet name not valid: {self.planet}")
+        if self.frequency is None:
+            raise ValueError("Frequency must not be None.")
     
-    @planet.getter
-    def planet(self):
-        return self.planet
-
-    @frequency.setter
-    def frequency(self,freq:str):
-        accepted = ["low","mid","high"]
-        if freq not in accepted:
-            raise ValueError(f"Frequency Setter: invalid parameter {freq}")
-        self.frequency = freq
-    
-    @frequency.getter
-    def frequency(self):
-        return self.frequency
-    
-    @inclination.setter
-    def inclination(self,angle:float):
-        self.inclination = angle
-    
-    @inclination.getter
-    def inclination(self):
-        return self.inclination
-    """
+    def __getitem__(self, key):
+        return  self.__dict__[key]
 
 
 class Data():
-    def __init__(self,name="",debug=False):
+    """
+        Container class for simulation data.
+        - name: name of the data stored in the class
+        - debug (bool): if true, prints to console operations done on the data
+    """
+    def __init__(self,name=None,debug=False):
+        if name is None:
+            raise ValueError("Name of Data object must be passed.")
         self.name = name
         self.debug = debug
         self.valid_freqs = ["low","mid","high"]
@@ -154,15 +103,6 @@ class Data():
             "mid" : [],
             "high" : []
         }
-    """
-    def __setitem__(self,item,value):
-        if self.debug:
-            l.info(f"Set {item} to {value}")
-    
-    def __getitem__(self,item):
-        if self.debug:
-            l.info(f"Received key {item}")
-    """
 
     def check_planet(self,planet):
         if not isinstance(planet,str):

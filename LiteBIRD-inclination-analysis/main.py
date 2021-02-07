@@ -16,6 +16,7 @@ import subprocess as s
 import markdown as md
 from scipy.interpolate import UnivariateSpline
 import timeit
+import database
 
 
 import logging
@@ -50,6 +51,12 @@ TELESCOPES = {
     "low" : "LFT/L1-040",
     "mid" : "MFT/M2-166",
     "high" : "HFT/H3-402"
+}
+
+FREQUENCIES = {
+    "low" : 40,
+    "mid" : 144,
+    "high" : 402
 }
 
 @dataclass
@@ -315,7 +322,7 @@ def write_to_file(filename,ecc_true,n_of_runs,ecc_estimate,fwhm,fwhm_error):
 def compute(i,tot,data_path: Path):
     angle_data= []
     ampl_data = []
-    info = models.Information()
+    
     sim = lbs.Simulation(
         parameter_file=str(data_path),
         name="In-flight estimation of the beam properties",
@@ -338,7 +345,12 @@ noise/optical properties of a detector.
     logging.info(f"Starting simulation {i} of {tot}")
     logging.info(f"Planet: {params.planet_name.capitalize()}")
     logging.info(f"Frequency: {str(_frequency).capitalize()}")
-    logging.info(f"Inclination angle: {params.inclination} --> {np.rad2deg(params.inclination)}")
+    logging.info(f"Inclination angle: {params.inclination} [rad] --> {np.rad2deg(params.inclination)} [deg]")
+    info = models.Information(
+        planet = params.planet_name,
+        frequency = _frequency,
+        inclination = params.inclination
+    )
     
     # Calculate the brightness temperature of the planet over the band
     sed_data = np.loadtxt(params.sed_file_name, delimiter=",")
@@ -463,11 +475,13 @@ noise/optical properties of a detector.
 def main():
     sim2 = lbs.Simulation(
         base_path = "results/",
-        name = "My simulation",
+        name = "LiteBIRD's beam nclination angle simulation",
         description= "Desc."
     )
     angle_data = models.Data(name="angles") #Store simulation results (or informations)
     fwhm_data = models.Data(name="fwhm")
+    d = database.SimulationDatabase()
+    d.create_simulation()
     planets = ["jupiter","neptune","uranus"]
     frequencies = ["low","mid","high"] # Low = 40GHz, Mid = 166GHz, High = 402GHz
     angles = list(range(0,200,20))
@@ -510,6 +524,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
                     angle_2 = info.angle,
                     angle_err2 = info.angle_error
                 )
+                d.insert_run(info)
 
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
     #At this point we have a Data objecti with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
@@ -529,8 +544,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
             )
             ax1.plot(
                 [data[0] for data in fwhm_data.get_planet(p)[f]],
-                [data[1] for data in fwhm_data.get_planet(p)[f]],
-                label = f"FWHM plot [{p}]"
+                [data[1] for data in fwhm_data.get_planet(p)[f]]
             )
             #s = UnivariateSpline(x, y, s=4)
             #sx1 = np.linspace( 0, len(fwhm_data.get_planet(p)[f]), 100)
@@ -544,7 +558,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
             ax2.plot(
                 [data[0] for data in angle_data.get_planet(p)[f]],
                 [data[1] for data in angle_data.get_planet(p)[f]],
-                label = f"Inclination plot [{p}]"
+                label = f"{f} frequency - {FREQUENCIES[f]}GHz"
             )
         plt.legend()
         fig = plot.gcf()
@@ -566,7 +580,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
         
 
 if __name__ == "__main__":
-    start = timeit.timeit()
+    start = time.time()
     main()
-    end = timeit.timeit()
+    end = time.time()
     print(f"Simulation executed in {end-start} seconds.")

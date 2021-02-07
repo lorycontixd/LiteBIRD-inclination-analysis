@@ -1,0 +1,25 @@
+[[simulation]]
+runs = 500
+planets = [
+    "jupiter",
+    "neptune",
+    "uranus"
+]
+frequencies = [
+    "low",
+    "mid",
+    "high"
+]
+
+[[simulation.angles]]
+minimum = 0
+maximum = 200
+step = 20
+
+[[settings]]
+debug = false
+colored = true
+database = true
+
+[[settings.database]]
+override = false
