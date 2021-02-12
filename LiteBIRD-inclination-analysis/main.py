@@ -17,6 +17,7 @@ import markdown as md
 from scipy.interpolate import UnivariateSpline
 import timeit
 import database
+import settings
 
 
 import logging
@@ -111,7 +112,7 @@ def create_toml(planet,frequency,inclination):
     with open('tempfile.toml', 'w+') as f:
         content = f"""[simulation]
 base_path = "./results/"
-num_of_mc_runs = 15
+num_of_mc_runs = 20
 
 [planet]
 planet_name = "{planet}"
@@ -472,19 +473,20 @@ noise/optical properties of a detector.
     info.plots = [fwhm_plot,ampl_plot,ecc_plot,ang_plot]
     return info
 
-def main():
+def main(filename:str):
+    mysettings = settings.Settings(filename)
     sim2 = lbs.Simulation(
         base_path = "results/",
-        name = "LiteBIRD's beam nclination angle simulation",
-        description= "Desc."
+        name = mysettings.simulation_title,
+        description= mysettings.simulation_description
     )
+    if mysettings.settings_debug:
+        print(mysettings)
     angle_data = models.Data(name="angles") #Store simulation results (or informations)
     fwhm_data = models.Data(name="fwhm")
-    d = database.SimulationDatabase()
-    d.create_simulation()
-    planets = ["jupiter","neptune","uranus"]
-    frequencies = ["low","mid","high"] # Low = 40GHz, Mid = 166GHz, High = 402GHz
-    angles = list(range(0,200,20))
+    if mysettings.settings_database:
+        d = database.SimulationDatabase()
+        d.create_simulation()
     intro = """
 # Base information
 This report contains information about the dependency of the in-flight beam's inclination angle on planet and telescope frequency.
@@ -492,10 +494,10 @@ The document contains plots
     """
     sim2.append_to_report(intro)
     index = 0
-    tot = len(planets)*len(frequencies)*len(angles)
-    for p in planets:
-        for f in frequencies:
-            for a in angles:
+    tot = len(mysettings.simulation_planets)*len(mysettings.simulation_frequencies)*len(mysettings.simulation_angles)
+    for p in mysettings.simulation_planets:
+        for f in mysettings.simulation_frequencies:
+            for a in mysettings.simulation_angles:
                 create_toml(p,f,a) # Create a temporary TOML file with parameters
                 info = compute(index+1,tot,"tempfile.toml") #extract data from the simulation by passing the temporary TOML file
                 angle_data.append_data(p,f,(models.rad2arcmin(info.inclination),models.rad2arcmin(info.angle_error)))
@@ -524,15 +526,17 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
                     angle_2 = info.angle,
                     angle_err2 = info.angle_error
                 )
-                d.insert_run(info)
+                if mysettings.settings_database:
+                    d.insert_run(info)
 
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
     #At this point we have a Data objecti with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
     index2 = 0
     
     for p in planets:
-        fig, (ax1, ax2) = plt.subplots(1, 2)
+        fig, (ax1, ax2) = plt.subplots(nrows = 2, ncols = 1, sharex = True,figsize=(5, 5))
         ax1.set_xlabel("Inclination angle [arcmin]")
+        ax1.get_xaxis().set_visible(False)
         ax2.set_xlabel("Inclination angle [arcmin]")
         ax1.set_ylabel("FWHM Error [arcmin]", labelpad = -2)
         ax2.set_ylabel("Inclination angle Error [arcmin] ",labelpad = -2)
@@ -560,7 +564,7 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
                 [data[1] for data in angle_data.get_planet(p)[f]],
                 label = f"{f} frequency - {FREQUENCIES[f]}GHz"
             )
-        plt.legend()
+        plt.legend(prop={'size': 6})
         fig = plot.gcf()
             
 
@@ -580,7 +584,8 @@ angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   
         
 
 if __name__ == "__main__":
+    assert len(sys.argv) == 2,f"Program requires parameter <TOML parameter_file>"
     start = time.time()
-    main()
+    main(str(sys.argv[1]))
     end = time.time()
     print(f"Simulation executed in {end-start} seconds.")
