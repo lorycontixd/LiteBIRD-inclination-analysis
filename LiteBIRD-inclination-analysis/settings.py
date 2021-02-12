@@ -21,6 +21,9 @@ def normalize(mydict):
 
 class Settings():
     """
+    Description of settings class.
+
+    Will add possiblity to initalize with kwargs together with filename (args vs kwargs)
     """
 
     def __init__(self,filename):
