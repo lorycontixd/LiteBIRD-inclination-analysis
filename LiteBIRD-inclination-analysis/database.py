@@ -42,12 +42,10 @@ class Parser():
         return cols
 
 
-
-
 class Database():
     """
     Class for storing simulation results in a sqlite3 database
-    (sqlite3 over mongo and )
+    (sqlite3 over mongo)
     """
 
     def __init__(self,name=None,max_tables = 10):
@@ -106,9 +104,16 @@ class Database():
         return rows
 
 class SimulationDatabase(Database):
-    def __init__(self):
+    def __init__(self,name = None):
         super().__init__("simulations")
-        self.name = "simulation"+str(len(self._list_tables()))
+        if name is None:
+            self.name = "simulation"+str(len(self._list_tables()))
+        else:
+            self.name = name
+            if self.name not in [item[0] for item in self._list_tables()]:
+                print(self.name,"  ",self._list_tables())
+                print(f"Table {self.name} not found in the database. Setting to simulation{len(self._list_tables())-1}")
+                self.name = "simulation"+str(len(self._list_tables())-1)
         self.keys = ["planet","frequency","inclination","angle_error","ampl_error","fwhm_error"]
     
     def create_simulation(self):
@@ -122,18 +127,41 @@ class SimulationDatabase(Database):
         }
         self.create_table(self.name,cols)
     
-    def insert_run(self,info:models.Information):
+    def insert_run(self,info:models.Information,table_name=None):
         params = []
         for k in self.keys:
             if k != "planet":
                 params.append( (k,info[k]) )
             else:
                 params.append( (k,info[k].name) )
-        self.insert_to_table(self.name,params)
+        if table_name is None:
+            self.insert_to_table(self.name,params)
+        else:
+            self.insert_to_table(table_name,params)
 
-    def query_all_runs(self):
-        data = self.query_data(self.name)
+    def query_all_runs(self,name=None):
+        if name is None:
+            data = self.query_data(self.name)
+        else:
+            data = self.query_data(name)
+        return data
 
     def query_run(self,columns=[],filter=()):
         data = self.query_data(self.name,columns,filter)
         return data
+    
+    def order(self,column="planet",order_type="ASC"):
+        if not isinstance(column,str):
+            raise TypeError("Order key must be a string")
+        if not isinstance(self.name,str):
+            raise TypeError("Table name must be a string")
+        if not isinstance(order_type,str):
+            raise TypeError("Order type must be a string")
+        order_type = order_type.upper()
+        if order_type not in ["ASC","DESC"]:
+            raise ValueError(f"Invalid order type {str(order_type)}. Must be ASC or DESC")
+
+        sql_statement = f'''SELECT * FROM {self.name} ORDER BY {column} {order_type}'''
+        data = self.c.execute(sql_statement)
+        rows = self.c.fetchall()
+        return rows

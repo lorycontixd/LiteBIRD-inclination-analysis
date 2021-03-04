@@ -484,6 +484,7 @@ def main(filename:str):
         print(mysettings)
     angle_data = models.Data(name="angles") #Store simulation results (or informations)
     fwhm_data = models.Data(name="fwhm")
+    infos = []
     if mysettings.settings_database:
         d = database.SimulationDatabase()
         d.create_simulation()
@@ -496,51 +497,44 @@ The document contains plots
     index = 0
     tot = len(mysettings.simulation_planets)*len(mysettings.simulation_frequencies)*len(mysettings.simulation_angles)
     for p in mysettings.simulation_planets:
+        sim2.append_to_report(
+            """
+            ### Data for {{planet_name}} 
+
+Frequency  |  Angle      | Angle_error | FWHM Error
+---------- | ----------- | ----------- | ------------
+            """,
+            planet_name = p
+        )
         for f in mysettings.simulation_frequencies:
             for a in mysettings.simulation_angles:
                 create_toml(p,f,a) # Create a temporary TOML file with parameters
                 info = compute(index+1,tot,"tempfile.toml") #extract data from the simulation by passing the temporary TOML file
                 angle_data.append_data(p,f,(models.rad2arcmin(info.inclination),models.rad2arcmin(info.angle_error)))
                 fwhm_data.append_data(p,f,(models.rad2arcmin(info.inclination),info.fwhm_error))
-                index +=1
-
-                sim2.append_to_report(
-                    """
-### Planet: {{planet_name}} - Frequency {{frequency}} - {{angle}}
-
-Parameter  | Value
----------- | -----------------
-# of runs  | {{ runs }}
-FWHM       | {{"%.3f"|format(fwhm)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
-angle      | {{"%.3f"|format(angle_)}} ± {{"%.3f"|format(angle_err)}} arcmin   [ {{"%.3f"|format(angle_2)}} ± {{"%.3f"|format(angle_err2)}} arcmin ]
-
-                    """,
-                    planet_name = p,
-                    frequency = f,
-                    angle = a,
-                    runs = info.runs,
-                    fwhm = info.fwhm,
-                    fwhm_err = info.fwhm_error,
-                    angle_ = models.rad2arcmin(info.angle),
-                    angle_err = models.rad2arcmin(info.angle_error),
-                    angle_2 = info.angle,
-                    angle_err2 = info.angle_error
-                )
                 if mysettings.settings_database:
                     d.insert_run(info)
-
+                index +=1
+        sim2.append_to_report(
+                    """
+ {{freq}}  | {{angle}}   | {{a_error}} | {{fwhm_err}}
+                    """,
+                    freq = f,
+                    angle = a,
+                    a_error = info.angle_error,
+                    fwhm_err = info.fwhm_error
+                )
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
     #At this point we have a Data objecti with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
-    index2 = 0
     
-    for p in planets:
+    for p in mysettings.simulation_planets:
         fig, (ax1, ax2) = plt.subplots(nrows = 2, ncols = 1, sharex = True,figsize=(5, 5))
         ax1.set_xlabel("Inclination angle [arcmin]")
         ax1.get_xaxis().set_visible(False)
         ax2.set_xlabel("Inclination angle [arcmin]")
         ax1.set_ylabel("FWHM Error [arcmin]", labelpad = -2)
         ax2.set_ylabel("Inclination angle Error [arcmin] ",labelpad = -2)
-        for f in frequencies:
+        for f in mysettings.simulation_frequencies:
             ax1.scatter(
                 [data[0] for data in fwhm_data.get_planet(p)[f]],
                 [data[1] for data in fwhm_data.get_planet(p)[f]],

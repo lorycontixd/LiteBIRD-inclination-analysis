@@ -15,6 +15,9 @@ def fig_hist(data,ylabels, xvalues, title=''):
 def fig_plot(xdata,ydata,xlabels,ylabels,title=""):
     pass
 
+def create_table():
+    pass
+
 def rad2arcmin(x):
     if isinstance(x,(list,tuple)):
         t = type(x)
@@ -84,7 +87,6 @@ class Data():
         if name is None:
             raise ValueError("Name of Data object must be passed.")
         self.name = name
-        self.debug = debug
         self.valid_freqs = ["low","mid","high"]
         self.valid_planets = ["jupiter","neptune","uranus"]
         self.debug = debug
