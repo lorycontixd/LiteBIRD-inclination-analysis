@@ -1,6 +1,6 @@
 [simulation]
 base_path = "./results/"
-num_of_mc_runs = 20
+num_of_mc_runs = 200
 
 [planet]
 planet_name = "uranus"
@@ -9,9 +9,9 @@ planet_radius_m = 25362000.0
 scanning_simulation = "./litebird-scanning-strategy"
 
 [detector]
-channel_obj = "/releases/v1.0/satellite/HFT/H3-402/channel_info"
+channel_obj = "/releases/v1.0/satellite/MFT/M2-166/channel_info"
 bandwidth_ghz = 12.0
 sampling_rate_hz = 1.0
-eccentricity = 0.3
-frequency = "high"
-inclination = 180
+eccentricity = 0.1
+frequency = "mid"
+inclination = 0

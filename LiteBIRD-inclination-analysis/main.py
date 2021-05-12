@@ -7,15 +7,15 @@ from tabulate import tabulate
 from dataclasses import dataclass
 import json
 import time
-import os
+import os,sys
 from pathlib import Path
 from shutil import copyfile
-import sys
 from typing import Dict, Any, List, Union
 import subprocess as s
 import markdown as md
 from scipy.interpolate import UnivariateSpline
 import timeit
+import subprocess
 import database
 import settings
 
@@ -106,13 +106,13 @@ def check_frequency(freq):
     telescope = get_telescope(freq)
     return (freq,telescope)
 
-def create_toml(planet,frequency,inclination):
+def create_toml(settings,planet,frequency,inclination):
     planet,radius = check_planet(planet)
     frequency,telescope = check_frequency(frequency)
     with open('tempfile.toml', 'w+') as f:
         content = f"""[simulation]
 base_path = "./results/"
-num_of_mc_runs = 20
+num_of_mc_runs = {settings.simulation_runs}
 
 [planet]
 planet_name = "{planet}"
@@ -124,7 +124,7 @@ scanning_simulation = "./litebird-scanning-strategy"
 channel_obj = "/releases/v1.0/satellite/{telescope}/channel_info"
 bandwidth_ghz = 12.0
 sampling_rate_hz = 1.0
-eccentricity = 0.3
+eccentricity = {settings.simulation_eccentricity}
 frequency = "{frequency}"
 inclination = {inclination}
 """
@@ -201,12 +201,11 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
     sin_theta = np.sin(pixel_theta) 
     x = sin_theta * np.cos(pixel_phi)
     y = sin_theta * np.sin(pixel_phi)
-    assert len(x) == len(y)
+    assert len(x) == len(y), "DimensionalError: theta and phi must have the same length"
     u = np.cos(angle)*x + np.sin(angle)*y
     v = -np.sin(angle)*x + np.cos(angle)*y
     a0 = fwhm_arcmin
     a2 = a0*(1-eccentricity)
-    #exponential = -np.log(2)*((u/a0)**2 + a2*v**2)
     exponential = -np.log(2) * ( (u/np.deg2rad(a0 / 60.0))**2 + (v/np.deg2rad(a2/60.0))**2 )
     return amplitude * np.exp(exponential)
 
@@ -434,13 +433,13 @@ noise/optical properties of a detector.
             asymmetric_beam_good,
             (pixel_theta[mask],pixel_phi[mask]),
             noise_gamma_map[mask],
-            p0=[params.detector.fwhm_arcmin, params.eccentricity, params.inclination, 1.0]
+            p0=[params.detector.fwhm_arcmin, params.eccentricity, params.inclination, 1.0],
+            maxfev=100000
         )
         fwhm_estimates_arcmin[i] = best_fit[0]
         eccentricity_estimates[i] = best_fit[1]
         angle_estimates[i] = best_fit[2]
         ampl_estimates[i] = best_fit[3]
-
     
     fwhm_fig,fwhm_ax = models.fig_hist(fwhm_estimates_arcmin,"Counts","FWHM [arcmin]","FWHM distribution")
     fwhm_plot = models.Plot("FWHM",fwhm_fig)
@@ -469,9 +468,40 @@ noise/optical properties of a detector.
     info.angle_error = np.std(angle_estimates)
     info.ampl = np.mean(ampl_estimates)
     info.ampl_error = np.std(ampl_estimates)
+    info.maps = (gamma_map,error_amplitude_map)
 
     info.plots = [fwhm_plot,ampl_plot,ecc_plot,ang_plot]
     return info
+
+def clear_map_files():
+    subprocess.run(["chmod +x clean_maps.sh"],shell=True)
+    subprocess.run(["./clean_maps.sh"])
+
+def write_maps_to_file(i,planet,freq,angle,gamma_map=None,error_map=None):
+    planet = planet.lower()
+    base_dir = "results/maps/"
+    planets = ["jupiter","neptune","uranus"]
+    if planet not in planets:
+        raise ValueError(f"Invalid planet {planet} for write_maps.")
+    directories = [base_dir+str(p) for p in planets]
+    for dir in directories:
+        if not os.path.isdir(dir):
+            subprocess.run(["mkdir",dir])
+    angle = float("{:.2f}".format(angle))
+
+    if gamma_map is not None:
+        map_file = open(f"{base_dir}{planet}/gammamap_{freq}_{angle}.dat","w+")
+        for i in gamma_map:
+            map_file.write(str(i)+"\n")
+        map_file.close()
+    
+    if error_map is not None:
+        error_file = open(f"{base_dir}{planet}/errormap_{freq}_{angle}.dat","w+")
+        for i in error_map:
+            error_file.write(str(i)+"\n")
+        error_file.close()
+    print("Maps written to files")
+    return
 
 def main(filename:str):
     mysettings = settings.Settings(filename)
@@ -485,9 +515,11 @@ def main(filename:str):
     angle_data = models.Data(name="angles") #Store simulation results (or informations)
     fwhm_data = models.Data(name="fwhm")
     infos = []
-    if mysettings.settings_database:
-        d = database.SimulationDatabase()
+    if mysettings.database_active:
+        d = database.SimulationDatabase("db/"+mysettings.database_name)
         d.create_simulation()
+    if mysettings.settings_clear_maps:
+        clear_map_files()
     intro = """
 # Base information
 This report contains information about the dependency of the in-flight beam's inclination angle on planet and telescope frequency.
@@ -508,11 +540,12 @@ Frequency  |  Angle      | Angle_error | FWHM Error
         )
         for f in mysettings.simulation_frequencies:
             for a in mysettings.simulation_angles:
-                create_toml(p,f,a) # Create a temporary TOML file with parameters
+                create_toml(mysettings,p,f,a) # Create a temporary TOML file with parameters
                 info = compute(index+1,tot,"tempfile.toml") #extract data from the simulation by passing the temporary TOML file
                 angle_data.append_data(p,f,(models.rad2arcmin(info.inclination),models.rad2arcmin(info.angle_error)))
                 fwhm_data.append_data(p,f,(models.rad2arcmin(info.inclination),info.fwhm_error))
-                if mysettings.settings_database:
+                write_maps_to_file(index,p,f,a,error_map=info.maps[1])
+                if mysettings.database_active:
                     d.insert_run(info)
                 index +=1
         sim2.append_to_report(
@@ -525,7 +558,7 @@ Frequency  |  Angle      | Angle_error | FWHM Error
                     fwhm_err = info.fwhm_error
                 )
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
-    #At this point we have a Data objecti with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
+    #At this point we have a Data object with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
     
     for p in mysettings.simulation_planets:
         fig, (ax1, ax2) = plt.subplots(nrows = 2, ncols = 1, sharex = True,figsize=(5, 5))

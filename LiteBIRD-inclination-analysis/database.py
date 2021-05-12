@@ -39,7 +39,7 @@ class Parser():
             cols += str(c)
             if i != len(columns)-1:
                 cols +=","
-        return cols
+        return cols[:-1]
 
 
 class Database():
@@ -48,10 +48,8 @@ class Database():
     (sqlite3 over mongo)
     """
 
-    def __init__(self,name=None,max_tables = 10):
-        if name is None:
-            raise ValueError("Database name must not be None")
-        self.name = name.lower()
+    def __init__(self,name,max_tables = 10):
+        self.name = name
         self.max_tables = max_tables
         self.conn = None
         self.c = None
@@ -70,6 +68,11 @@ class Database():
         self.c.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;")
         tables=(self.c.fetchall())
         return tables
+
+    def _list_columns(self,table_name):
+        self.c.execute(f"SELECT * from {table_name}")
+        names = [description[0] for description in self.c.description]
+        return names
 
     def create_table(self,name,columns):
         params = self.parser.create_table(columns)        
@@ -97,26 +100,31 @@ class Database():
             column_string = self.parser.query_columns(columns)
         command = f'''SELECT {column_string} FROM {table_name}'''
         if filter:
-            command = f"SELECT {column_string} FROM {table_name} WHERE {filter[0]}='{filter[1]}'"
-        print(command)
+            command = f"SELECT {column_string} FROM {table_name} WHERE {filter[0]}='{filter[1]}';"
+        print("query_data --> received: ",command)
         data = self.c.execute(command)
         rows = self.c.fetchall()
         return rows
 
 class SimulationDatabase(Database):
-    def __init__(self,name = None):
-        super().__init__("simulations")
-        if name is None:
-            self.name = "simulation"+str(len(self._list_tables()))
+    def __init__(self,database_name,main_table=None):
+        self.dbname = database_name
+        super().__init__(self.dbname)
+        if main_table is None:
+            self.main_table = "simulation0"
         else:
-            self.name = name
-            if self.name not in [item[0] for item in self._list_tables()]:
-                print(self.name,"  ",self._list_tables())
-                print(f"Table {self.name} not found in the database. Setting to simulation{len(self._list_tables())-1}")
-                self.name = "simulation"+str(len(self._list_tables())-1)
+            #print(self.name, " ",[item[0] for item in self._list_tables()])
+            tables = [item[0] for item in self._list_tables()]
+            if main_table not in tables:
+                raise ValueError(f"Table {main_table} does not exist in database {self.dbname}.\nTables are {tables}")
+            else:
+                self.main_table = main_table
         self.keys = ["planet","frequency","inclination","angle_error","ampl_error","fwhm_error"]
     
-    def create_simulation(self):
+    def __repr__(self):
+        pass
+    
+    def create_simulation(self,table_name=None):
         cols = {
             "planet" : ("VARCHAR(255)","NOT NULL"),
             "frequency" : ("VARCHAR(255)","NOT NULL"),
@@ -125,8 +133,21 @@ class SimulationDatabase(Database):
             "ampl_error" : ("FLOAT","NOT NULL"),
             "fwhm_error" : ("FLOAT","NOT NULL")
         }
-        self.create_table(self.name,cols)
+        table = None
+        if table_name is None:
+            table = "simulation"+str(len(self._list_tables))
+        else:
+            if table_name in self._list_tables():
+                raise ValueError("Table already exists")
+            table = table_name
+        self.create_table(table,cols)
     
+    def list_columns(self,table_name=None):
+        if table_name is None:
+            return self._list_columns(self.main_table)
+        else:
+            return self._list_columns(table_name)
+
     def insert_run(self,info:models.Information,table_name=None):
         params = []
         for k in self.keys:
@@ -135,19 +156,23 @@ class SimulationDatabase(Database):
             else:
                 params.append( (k,info[k].name) )
         if table_name is None:
-            self.insert_to_table(self.name,params)
+            table = "simulation"+str(len(self._list_tables))
         else:
-            self.insert_to_table(table_name,params)
+            table = table_name
+        self.insert_to_table(table,params)
 
-    def query_all_runs(self,name=None):
-        if name is None:
-            data = self.query_data(self.name)
+    def query_all_runs(self,table_name=None):
+        if table_name is None:
+            data = self.query_data(self.main_table)
         else:
-            data = self.query_data(name)
+            data = self.query_data(table_name)
         return data
 
-    def query_run(self,columns=[],filter=()):
-        data = self.query_data(self.name,columns,filter)
+    def query_run(self,table_name=None,columns=[],filter=()):
+        if table_name is None:
+            data = self.query_data(self.main_table,columns,filter)
+        else:
+            data = self.query_data(table_name,columns,filter)
         return data
     
     def order(self,column="planet",order_type="ASC"):
@@ -161,7 +186,8 @@ class SimulationDatabase(Database):
         if order_type not in ["ASC","DESC"]:
             raise ValueError(f"Invalid order type {str(order_type)}. Must be ASC or DESC")
 
-        sql_statement = f'''SELECT * FROM {self.name} ORDER BY {column} {order_type}'''
+        sql_statement = f'''SELECT * FROM {self.main_table} ORDER BY {column} {order_type}'''
+        print(f"order --> received: ",sql_statement)
         data = self.c.execute(sql_statement)
         rows = self.c.fetchall()
         return rows
