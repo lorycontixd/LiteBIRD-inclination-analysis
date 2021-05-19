@@ -5,3 +5,4 @@ LiteBIRD-inclination-analysis/results/*
 LiteBIRD-inclination-analysis/notebooks/*
 notebooks/*
 notebooks/
+LiteBIRD-inclination-analysis/tempfile.toml
