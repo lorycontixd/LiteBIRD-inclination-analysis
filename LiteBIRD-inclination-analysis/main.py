@@ -357,8 +357,10 @@ noise/optical properties of a detector.
     )
     
     # Calculate the brightness temperature of the planet over the band
+    print("sed file: ",params.sed_file_name)
     sed_data = np.loadtxt(params.sed_file_name, delimiter=",")
     sed_fn = interpolate.interp1d(sed_data[:, 0], sed_data[:, 1],bounds_error=False,fill_value=1)
+    print("sed_fn: ",sed_fn)
     planet_temperature_k = (
         integrate.quad(
             sed_fn,
@@ -367,6 +369,10 @@ noise/optical properties of a detector.
         )[0]
         / params.detector.bandwidth_ghz
     )
+
+    print("temp: ",planet_temperature_k)
+    print("fwhm input: ",det.fwhm_arcmin)
+    print("ecc input: ",params.eccentricity)
 
     beam_solid_angle = calc_beam_solid_angle(fwhm_arcmin=det.fwhm_arcmin,eccentricity=params.eccentricity,angle=params.inclination)
     sampling_time_s = 1.0 / params.detector.sampling_rate_hz
