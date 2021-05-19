@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from dataclasses import dataclass,field
 
-def fig_hist(data,ylabels, xvalues, title=''):
+def fig_hist(data,ylbl,xlbl, title=''):
     figure, ax = plt.subplots()
     ax.hist(data)
-    ax.set_xlabel("Angle")
-    ax.set_ylabel("Counts")
+    ax.set_xlabel(xlbl)
+    ax.set_ylabel(ylbl)
     if title:
         plt.title(title)
     return figure,ax
@@ -38,11 +38,22 @@ def arcmin2rad(x):
 
 @dataclass(init=True, repr=True)
 class Planet():
+    """[Planet class]
+Represents an instance of a planet, holding the following attributes:
+- name (str): Name of the planet
+- temperature (str): temperature of the planet (in Kelvin)
+- radius (int): radius of the planet (in meters)
+    """
     name: str = None
     temperature : str = None
     radius : int = None
 
 class Plot():
+    """[Plot class]
+Holds information for a graph computed with matplotlib's PyPlot
+- name (str): Name of the graph (used as ID)
+- figure (graph): The figure holding the graph
+    """
     def __init__(self,name="",figure=None):
         super().__init__()
         self.name = name
@@ -50,6 +61,25 @@ class Plot():
 
 @dataclass
 class Information():
+    """[Information class]
+Holds various information that is passed on from the computational section of the code, where the MonteCarlo simulations are exectued, to the data analysis code.
+This method is much more structured and easier to understand than other methods to pass on information through functions.
+
+- planet (str): The planet used for the simulation
+- frequency (str): The frequency used for the simulation
+- inclination (float = 0.0): Inclination angle used for the simulation
+- runs (int = 500): Number of MonteCarlo runs for the simulation
+- fwhm (float = 0.0): Result for the FWHM from the simulation
+- fwhm_error (float = 0.0): Result for the FWHM error from the simulation 
+- angle (float = 0.0): Result for the inclination angle from the simulation
+- angle_error (float = 0.0): Result for the inclination angle error from the simulation 
+- ampl (float = 0.0): Result for the radiation amplitude/intensity from the simulation
+- ampl_error (float = 0.0): Result for the radiation amplitude/intensity error from the simulation 
+- ecc (float = 0.0): 
+- ecc_error (float = 0.0):
+- ampl_point (tuple = (0.0,0.0)): ?
+- plots (list): list of plots from the outcome of the simulation
+"""
     planet : str = None
     frequency : str = None
     inclination : float = 0.0
@@ -61,6 +91,10 @@ class Information():
     ampl : float = 0.0
     ampl_error : float = 0.0
     ampl_point : tuple = (0.0,0.0)
+    ecc : float = 0.0
+    ecc_error : float = 0.0
+    maps : tuple = None
+    hitmap : np.array = None
     plots : list = field(default_factory = lambda:[],repr = False, init = False)
 
     def __post_init__(self):

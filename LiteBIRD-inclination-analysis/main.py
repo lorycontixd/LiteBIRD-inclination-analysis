@@ -27,7 +27,6 @@ logging.basicConfig(
     datefmt = '%m/%d/%Y %H:%M:%S'
 )
 
-
 from tqdm import tqdm
 
 import litebird_sim as lbs
@@ -56,7 +55,7 @@ TELESCOPES = {
 
 FREQUENCIES = {
     "low" : 40,
-    "mid" : 144,
+    "mid" : 166,
     "high" : 402
 }
 
@@ -109,27 +108,26 @@ def check_frequency(freq):
 def create_toml(settings,planet,frequency,inclination):
     planet,radius = check_planet(planet)
     frequency,telescope = check_frequency(frequency)
-    with open('tempfile.toml', 'w+') as f:
+    with open('tempfile.toml', 'w+') as file:
         content = f"""[simulation]
 base_path = "./results/"
 num_of_mc_runs = {settings.simulation_runs}
 
 [planet]
 planet_name = "{planet}"
-sed_file_name = "sed_files/{planet}_sed_ghz_k.csv"
+sed_file_name = "sed_files/{planet}_hf2.csv"
 planet_radius_m = {radius}
-scanning_simulation = "./litebird-scanning-strategy"
+scanning_simulation = "./scanning_strategies/{planet}/"
 
 [detector]
 channel_obj = "/releases/v1.0/satellite/{telescope}/channel_info"
-bandwidth_ghz = 12.0
 sampling_rate_hz = 1.0
 eccentricity = {settings.simulation_eccentricity}
 frequency = "{frequency}"
 inclination = {inclination}
 """
         #print(content)
-        f.write(content)
+        file.write(content)
 
 def parse_frequency(freq:str):
     return freq
@@ -201,7 +199,7 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
     sin_theta = np.sin(pixel_theta) 
     x = sin_theta * np.cos(pixel_phi)
     y = sin_theta * np.sin(pixel_phi)
-    assert len(x) == len(y), "DimensionalError: theta and phi must have the same length"
+    #assert len(x) == len(y), "DimensionalError: theta and phi must have the same length"
     u = np.cos(angle)*x + np.sin(angle)*y
     v = -np.sin(angle)*x + np.cos(angle)*y
     a0 = fwhm_arcmin
@@ -212,8 +210,12 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
 
 #********************************************************************************************************
 
-def calc_beam_solid_angle(fwhm_arcmin):
-    return integrate.quad(lambda θ: np.sin(θ) * beamfunc(θ, fwhm_arcmin), 0, np.pi)[0]              #CHANGED
+def calc_beam_solid_angle(fwhm_arcmin,eccentricity,angle):
+    return integrate.dblquad(
+        lambda phi,theta: (
+            np.sin(theta) * asymmetric_beam_good((theta,phi), fwhm_arcmin,eccentricity,angle)
+        ), 0, np.pi,lambda theta: 0, lambda theta: np.pi
+    )[0]             #CHANGED
 
 
 def project_map_north_pole(pixels, width_deg, pixels_per_side=150):
@@ -319,13 +321,14 @@ def write_to_file(filename,ecc_true,n_of_runs,ecc_estimate,fwhm,fwhm_error):
     #print(f"{ecc_true},{n_of_runs},{ecc_estimate},{fwhm},{fwhm_error}")
    # file.write(f"{ecc_true},{n_of_runs},{ecc_estimate},{fwhm},{fwhm_error}")
    
-def compute(i,tot,data_path: Path):
+def compute(i,tot,planet,data_path: Path,logger_debug:bool, data_debug:bool):
     angle_data= []
     ampl_data = []
     
     sim = lbs.Simulation(
         parameter_file=str(data_path),
         name="In-flight estimation of the beam properties",
+        base_path="./results/",
         description="""
 This report contains the result of a simulation of the reconstruction
 of in-flight beam parameters, assuming a scanning strategy and some
@@ -342,10 +345,11 @@ noise/optical properties of a detector.
         src=params.sed_file_name, dst=sim.base_path / params.sed_file_name.name,
     )
     print(" ")
-    logging.info(f"Starting simulation {i} of {tot}")
-    logging.info(f"Planet: {params.planet_name.capitalize()}")
-    logging.info(f"Frequency: {str(_frequency).capitalize()}")
-    logging.info(f"Inclination angle: {params.inclination} [rad] --> {np.rad2deg(params.inclination)} [deg]")
+    if logger_debug:
+        logging.info(f"Starting simulation {i} of {tot}")
+        logging.info(f"Planet: {params.planet_name.capitalize()}")
+        logging.info(f"Frequency: {str(_frequency).capitalize()}")
+        logging.info(f"Inclination angle: {params.inclination} [rad] --> {np.rad2deg(params.inclination)} [deg]")
     info = models.Information(
         planet = params.planet_name,
         frequency = _frequency,
@@ -364,7 +368,7 @@ noise/optical properties of a detector.
         / params.detector.bandwidth_ghz
     )
 
-    beam_solid_angle = calc_beam_solid_angle(fwhm_arcmin=det.fwhm_arcmin)
+    beam_solid_angle = calc_beam_solid_angle(fwhm_arcmin=det.fwhm_arcmin,eccentricity=params.eccentricity,angle=params.inclination)
     sampling_time_s = 1.0 / params.detector.sampling_rate_hz
 
     input_map_file_name = params.scanning_simulation / "map.fits.gz"
@@ -393,6 +397,18 @@ noise/optical properties of a detector.
             * np.sqrt(sampling_time_s)
         )
     ) * dist_map_m2
+
+    if data_debug:
+        print("\nPrinting sqrt terms:")
+        print("Solid angle: ",beam_solid_angle)
+        print("WN: ",params.detector.net_ukrts * 1e-6)
+        print("Planet radius: ",params.planet_radius_m," ----> radius squared: ",params.planet_radius_m**2)
+        print("Planet temperature: ",planet_temperature_k)
+        print("Sqrt tau: ",np.sqrt(sampling_time_s))
+        print("Bandcenter: ",params.detector.bandcenter_ghz,"\tBandwidth: ",params.detector.bandwidth_ghz)
+        print(" ")
+    #print(dist_map_m2)
+    
 
     (
         plot_size_deg,
@@ -434,7 +450,7 @@ noise/optical properties of a detector.
             (pixel_theta[mask],pixel_phi[mask]),
             noise_gamma_map[mask],
             p0=[params.detector.fwhm_arcmin, params.eccentricity, params.inclination, 1.0],
-            maxfev=100000
+            maxfev=10000
         )
         fwhm_estimates_arcmin[i] = best_fit[0]
         eccentricity_estimates[i] = best_fit[1]
@@ -468,16 +484,31 @@ noise/optical properties of a detector.
     info.angle_error = np.std(angle_estimates)
     info.ampl = np.mean(ampl_estimates)
     info.ampl_error = np.std(ampl_estimates)
+    info.ecc = np.mean(eccentricity_estimates)
+    info.ecc_error = np.std(eccentricity_estimates)
     info.maps = (gamma_map,error_amplitude_map)
-
+    info.hitmap = hit_map
     info.plots = [fwhm_plot,ampl_plot,ecc_plot,ang_plot]
+    
+    print("FWHM error: ",np.std(fwhm_estimates_arcmin)," - ",info.fwhm_error)
+    print("Angle error: ",np.std(angle_estimates)," - ",info.angle_error)
     return info
+
+def remove_temptoml(logger_debug:bool):
+    if os.path.isfile('tempfile.toml'):
+        subprocess.run(["rm","-rf","tempfile.toml"],shell=True)
+        if (logger_debug):
+            print("[MAIN] tempfile.toml file has been deleted")
 
 def clear_map_files():
     subprocess.run(["chmod +x clean_maps.sh"],shell=True)
     subprocess.run(["./clean_maps.sh"])
 
-def write_maps_to_file(i,planet,freq,angle,gamma_map=None,error_map=None):
+def write_maps_to_file(i,planet,freq,angle,gamma_map=None,error_map=None,hit_map=None,logger_debug=True):
+    """Saves maps to file:
+    -- Gamma_map: map of the radiation pattern
+    -- Error_map: map of the error of the radiation pattern
+    """
     planet = planet.lower()
     base_dir = "results/maps/"
     planets = ["jupiter","neptune","uranus"]
@@ -491,17 +522,26 @@ def write_maps_to_file(i,planet,freq,angle,gamma_map=None,error_map=None):
 
     if gamma_map is not None:
         map_file = open(f"{base_dir}{planet}/gammamap_{freq}_{angle}.dat","w+")
-        for i in gamma_map:
-            map_file.write(str(i)+"\n")
+        for x in gamma_map:
+            map_file.write(str(x)+"\n")
         map_file.close()
     
     if error_map is not None:
         error_file = open(f"{base_dir}{planet}/errormap_{freq}_{angle}.dat","w+")
-        for i in error_map:
-            error_file.write(str(i)+"\n")
+        for x in error_map:
+            error_file.write(str(x)+"\n")
         error_file.close()
-    print("Maps written to files")
+    
+    if hit_map is not None:
+        hitmap_file = open(f"{base_dir}{planet}/hitmap_{freq}_{angle}.dat","w+")
+        for x in hit_map:
+            hitmap_file.write(str(x)+"\n")
+        hitmap_file.close()
+    
+    if (logger_debug):
+        print("Pixel maps written to file")
     return
+
 
 def main(filename:str):
     mysettings = settings.Settings(filename)
@@ -510,7 +550,7 @@ def main(filename:str):
         name = mysettings.simulation_title,
         description= mysettings.simulation_description
     )
-    if mysettings.settings_debug:
+    if mysettings.settings_loggerdebug:
         print(mysettings)
     angle_data = models.Data(name="angles") #Store simulation results (or informations)
     fwhm_data = models.Data(name="fwhm")
@@ -529,34 +569,58 @@ The document contains plots
     index = 0
     tot = len(mysettings.simulation_planets)*len(mysettings.simulation_frequencies)*len(mysettings.simulation_angles)
     for p in mysettings.simulation_planets:
-        sim2.append_to_report(
-            """
-            ### Data for {{planet_name}} 
-
-Frequency  |  Angle      | Angle_error | FWHM Error
----------- | ----------- | ----------- | ------------
-            """,
-            planet_name = p
-        )
         for f in mysettings.simulation_frequencies:
             for a in mysettings.simulation_angles:
                 create_toml(mysettings,p,f,a) # Create a temporary TOML file with parameters
-                info = compute(index+1,tot,"tempfile.toml") #extract data from the simulation by passing the temporary TOML file
+                info = compute(index+1,tot,p,"tempfile.toml",mysettings.settings_loggerdebug,mysettings.settings_datadebug) #extract data from the simulation by passing the temporary TOML file
                 angle_data.append_data(p,f,(models.rad2arcmin(info.inclination),models.rad2arcmin(info.angle_error)))
                 fwhm_data.append_data(p,f,(models.rad2arcmin(info.inclination),info.fwhm_error))
-                write_maps_to_file(index,p,f,a,error_map=info.maps[1])
+                if mysettings.settings_save_error_map:
+                    write_maps_to_file(index,p,f,a,error_map = info.maps[1],logger_debug=mysettings.settings_loggerdebug)
+                if mysettings.settings_save_hitmap:
+                    write_maps_to_file(index,p,f,a,hit_map = info.hitmap,logger_debug=mysettings.settings_loggerdebug)
                 if mysettings.database_active:
                     d.insert_run(info)
-                index +=1
-        sim2.append_to_report(
-                    """
- {{freq}}  | {{angle}}   | {{a_error}} | {{fwhm_err}}
-                    """,
-                    freq = f,
-                    angle = a,
-                    a_error = info.angle_error,
-                    fwhm_err = info.fwhm_error
+                sim2.append_to_report("""
+### Results of the Monte Carlo simulation:  {{pname}} - {{freq}} - {{inc}}
+
+Parameter  | Value
+---------- | -----------------
+# of runs  | {{ num_of_runs }}
+FWHM       | {{"%.3f"|format(fwhm_arcmin)}} ± {{"%.3f"|format(fwhm_err)}} arcmin
+γ0         | {{"%.3f"|format(ampl)}} ± {{"%.3f"|format(ampl_err)}} arcmin
+e          | {{"%.3f"|format(ecc)}} ± {{"%.3f"|format(ecc_err)}} 
+theta      | {{"%.3f"|format(angle)}} ± {{"%.3f"|format(angle_err)}} 
+
+![](fwhm_distribution.svg)
+
+![](ampl_distribution.svg)
+
+![](ecc_distribution.svg)
+
+![](angle_distribution.svg)
+""",
+                    figures=[
+                        (info.plots[0].figure, "fwhm_distribution.svg"),
+                        (info.plots[1].figure, "ampl_distribution.svg"),
+                        (info.plots[2].figure, "ecc_distribution.svg"),
+                        (info.plots[3].figure,"angle_distribution.svg")
+                    ],
+                    pname = info.planet.name,
+                    freq = info.frequency,
+                    inc = info.inclination,
+                    num_of_runs=info.runs,
+                    fwhm_arcmin=info.fwhm,
+                    fwhm_err=info.fwhm_error,
+                    ampl=info.ampl,
+                    ampl_err=info.ampl_error,
+                    ecc=info.ecc,
+                    ecc_err = info.ecc_error,
+                    angle=info.angle,
+                    angle_err=info.angle_error
                 )
+                index +=1
+        
     #Information was stored in a Data object instead of being iterated directly to make it visually easier to understand
     #At this point we have a Data object with 3 different planets each with 3 different frequencies and each is a list of tuples (angle,gamma_error)
     
@@ -607,6 +671,7 @@ Frequency  |  Angle      | Angle_error | FWHM Error
             planet = p.capitalize()
         )
         plot.close()
+    remove_temptoml(mysettings.settings_loggerdebug)
     sim2.flush()
         
 

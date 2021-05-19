@@ -2,15 +2,16 @@
 title = "LiteBIRD's beam inclination angle simulation"
 description = ""
 database = ""
-runs = 200
+runs = 20
 angles = [0]
 planets = [
-    "jupiter",
     "neptune",
     "uranus"
 ]
 frequencies = [
-    "mid"
+    "low",
+    "mid",
+    "high"
 ]
 eccentricity = 0.1
 
@@ -19,8 +20,11 @@ author = "The LiteBIRD team"
 date = true
 
 [settings]
-debug = true
+loggerdebug = true
+datadebug = true
 clear_maps = true
+save_error_map = true
+save_hitmap = false
 
 [database]
 active = false

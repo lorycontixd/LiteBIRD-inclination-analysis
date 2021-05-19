@@ -38,8 +38,8 @@ class Settings():
         
     def __repr__(self):
         info = """
-The Settings class represents the parameters used for this simulation.
-This message is visible because debug = True, you can disable it in your parameter file or from this class.
+The Settings class represents the parameters used for the simulation.
+This message is visible because loggerdebug = True, you can disable it in your parameter file or from this class.
 
 Current simulation settings:
 """

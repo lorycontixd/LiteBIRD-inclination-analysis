@@ -1,5 +1,7 @@
-LiteBIRD-inclination-analysis/results/
 .DS_Store
-LiteBIRD-inclination-analysis/litebird-scanning-strategy/map.fits.gz
-LiteBIRD-inclination-analysis/litebird-scanning-strategy/report.html
-LiteBIRD-inclination-analysis/litebird-scanning-strategy/report.md
+LiteBIRD-inclination-analysis/litebird-scanning-strategy/*
+LiteBIRD-inclination-analysis/scanning_strategies/
+LiteBIRD-inclination-analysis/results/*
+LiteBIRD-inclination-analysis/notebooks/*
+notebooks/*
+notebooks/
