@@ -115,7 +115,7 @@ num_of_mc_runs = {settings.simulation_runs}
 
 [planet]
 planet_name = "{planet}"
-sed_file_name = "sed_files/{planet}_hf2.csv"
+sed_file_name = "sed_files/{planet}_hf3.csv"
 planet_radius_m = {radius}
 scanning_simulation = "./scanning_strategies/{planet}/"
 
