@@ -2,9 +2,10 @@
 title = "LiteBIRD's beam inclination angle simulation"
 description = ""
 database = ""
-runs = 20
-angles = [0]
+runs = 200
+angles = [0,20,45,90,135,180]
 planets = [
+    "jupiter",
     "neptune",
     "uranus"
 ]
@@ -13,7 +14,7 @@ frequencies = [
     "mid",
     "high"
 ]
-eccentricity = 0.1
+eccentricity = 0.05
 
 [simulation.info]
 author = "The LiteBIRD team"
@@ -23,11 +24,11 @@ date = true
 loggerdebug = true
 datadebug = true
 clear_maps = true
-save_error_map = true
+save_error_map = false
 save_hitmap = false
 
 [database]
-active = false
-name = "final_simulations"
+active = true
+name = "final_simulations2"
 
 #Solo idee di possibili parametri, eventualmente da aggiungere al report  (alcuni tramite l'oggetto lbs.Simulation)

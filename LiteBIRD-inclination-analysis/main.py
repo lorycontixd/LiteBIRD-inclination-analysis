@@ -204,7 +204,7 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
     v = -np.sin(angle)*x + np.cos(angle)*y
     a0 = fwhm_arcmin
     a2 = a0*(1-eccentricity)
-    exponential = -np.log(2) * ( (u/np.deg2rad(a0 / 60.0))**2 + (v/np.deg2rad(a2/60.0))**2 )
+    exponential = -4*np.log(2) * ( (u/np.deg2rad(a0 / 60.0))**2 + (v/np.deg2rad(a2/60.0))**2 )
     return amplitude * np.exp(exponential)
 
 
@@ -392,7 +392,7 @@ noise/optical properties of a detector.
         pixel_theta < np.deg2rad(3 * params.detector.fwhm_arcmin / 60.0)
     )
     assert hit_map[mask].size > 0, "no data available for the fit"
-
+    
     error_amplitude_map = (
         beam_solid_angle
         * (params.detector.net_ukrts * 1e-6)
@@ -404,7 +404,11 @@ noise/optical properties of a detector.
         )
     ) * dist_map_m2
 
+
     if data_debug:
+        print("\nMap means:")
+        print("Mean dist_map: ",np.mean(dist_map_m2))
+        print("Mean error_map: ",np.mean(error_amplitude_map))
         print("\nPrinting sqrt terms:")
         print("Solid angle: ",beam_solid_angle)
         print("WN: ",params.detector.net_ukrts * 1e-6)
@@ -451,13 +455,17 @@ noise/optical properties of a detector.
             len(dist_map_m2)
         )
         # Run the fit
-        best_fit,pcov = optimize.curve_fit(
-            asymmetric_beam_good,
-            (pixel_theta[mask],pixel_phi[mask]),
-            noise_gamma_map[mask],
-            p0=[params.detector.fwhm_arcmin, params.eccentricity, params.inclination, 1.0],
-            maxfev=10000
-        )
+        try:
+            best_fit,pcov = optimize.curve_fit(
+                asymmetric_beam_good,
+                (pixel_theta[mask],pixel_phi[mask]),
+                noise_gamma_map[mask],
+                p0=[params.detector.fwhm_arcmin, params.eccentricity, params.inclination, 1.0],
+                maxfev=1000000
+            )
+        except RuntimeError as e:
+            print(e)
+            return
         fwhm_estimates_arcmin[i] = best_fit[0]
         eccentricity_estimates[i] = best_fit[1]
         angle_estimates[i] = best_fit[2]
@@ -563,7 +571,7 @@ def main(filename:str):
     infos = []
     if mysettings.database_active:
         d = database.SimulationDatabase("db/"+mysettings.database_name)
-        d.create_simulation()
+        tbl = d.create_simulation()
     if mysettings.settings_clear_maps:
         clear_map_files()
     intro = """
@@ -586,7 +594,7 @@ The document contains plots
                 if mysettings.settings_save_hitmap:
                     write_maps_to_file(index,p,f,a,hit_map = info.hitmap,logger_debug=mysettings.settings_loggerdebug)
                 if mysettings.database_active:
-                    d.insert_run(info)
+                    d.insert_run(info,table_name=tbl)
                 sim2.append_to_report("""
 ### Results of the Monte Carlo simulation:  {{pname}} - {{freq}} - {{inc}}
 

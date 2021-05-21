@@ -135,12 +135,13 @@ class SimulationDatabase(Database):
         }
         table = None
         if table_name is None:
-            table = "simulation"+str(len(self._list_tables))
+            table = "simulation"+str(len(self._list_tables()))
         else:
             if table_name in self._list_tables():
                 raise ValueError("Table already exists")
             table = table_name
         self.create_table(table,cols)
+        return table
     
     def list_columns(self,table_name=None):
         if table_name is None:
@@ -156,7 +157,7 @@ class SimulationDatabase(Database):
             else:
                 params.append( (k,info[k].name) )
         if table_name is None:
-            table = "simulation"+str(len(self._list_tables))
+            table = "simulation"+str(len(self._list_tables()))
         else:
             table = table_name
         self.insert_to_table(table,params)
