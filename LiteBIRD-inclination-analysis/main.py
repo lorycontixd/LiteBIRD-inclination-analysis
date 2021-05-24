@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import math
 import models
 import importlib
@@ -14,10 +15,12 @@ from typing import Dict, Any, List, Union
 import subprocess as s
 import markdown as md
 from scipy.interpolate import UnivariateSpline
+from typing import Callable
 import timeit
 import subprocess
 import database
 import settings
+
 
 
 import logging
@@ -199,23 +202,33 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
     sin_theta = np.sin(pixel_theta) 
     x = sin_theta * np.cos(pixel_phi)
     y = sin_theta * np.sin(pixel_phi)
+    #print("Type theta: ",type(pixel_theta)," - Type phi: ",type(pixel_phi))
     #assert len(x) == len(y), "DimensionalError: theta and phi must have the same length"
     u = np.cos(angle)*x + np.sin(angle)*y
     v = -np.sin(angle)*x + np.cos(angle)*y
     a0 = fwhm_arcmin
     a2 = a0*(1-eccentricity)
     exponential = -4*np.log(2) * ( (u/np.deg2rad(a0 / 60.0))**2 + (v/np.deg2rad(a2/60.0))**2 )
-    return amplitude * np.exp(exponential)
+    result = amplitude * np.exp(exponential)
+    if not isinstance(pixel_theta,(float,np.float64)):
+        result[pixel_theta > np.pi / 2] = 0.0
+    return result
 
 
 #********************************************************************************************************
 
+def calc_symm_beam_solid_angle(fwhm_arcmin):
+    π = np.pi
+    integrand = lambda t : print(type(t))
+    return (
+        2 * π * integrate.quad(integrand, 0, π)[0]
+    )
+
 def calc_beam_solid_angle(fwhm_arcmin,eccentricity,angle):
+    integrand: Callable[[np.array, np.array], np.array] = lambda phi,theta: (np.sin(theta) * asymmetric_beam_good((theta,phi), fwhm_arcmin,eccentricity,angle))
     return integrate.dblquad(
-        lambda phi,theta: (
-            np.sin(theta) * asymmetric_beam_good((theta,phi), fwhm_arcmin,eccentricity,angle)
-        ), 0, np.pi,lambda theta: 0, lambda theta: np.pi
-    )[0]             #CHANGED
+        integrand , 0, np.pi, lambda theta: 0, lambda theta: np.pi
+    )[0]
 
 
 def project_map_north_pole(pixels, width_deg, pixels_per_side=150):
@@ -494,12 +507,12 @@ noise/optical properties of a detector.
     info.runs = len(fwhm_estimates_arcmin)
     info.fwhm = np.mean(fwhm_estimates_arcmin)
     info.fwhm_error = np.std(fwhm_estimates_arcmin)
-    info.angle = np.mean(angle_estimates)
-    info.angle_error = np.std(angle_estimates)
-    info.ampl = np.mean(ampl_estimates)
-    info.ampl_error = np.std(ampl_estimates)
-    info.ecc = np.mean(eccentricity_estimates)
-    info.ecc_error = np.std(eccentricity_estimates)
+    info.angle = 0#np.mean(angle_estimates)
+    info.angle_error = 0#np.std(angle_estimates)
+    info.ampl = 0#np.mean(ampl_estimates)
+    info.ampl_error = 0#np.std(ampl_estimates)
+    info.ecc = 0#np.mean(eccentricity_estimates)
+    info.ecc_error = 0#np.std(eccentricity_estimates)
     info.maps = (gamma_map,error_amplitude_map)
     info.hitmap = hit_map
     info.plots = [fwhm_plot,ampl_plot,ecc_plot,ang_plot]

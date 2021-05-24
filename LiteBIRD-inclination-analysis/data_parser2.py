@@ -15,7 +15,14 @@ parser = argparse.ArgumentParser(
     epilog= "https://github.com/lorycontixd/LiteBIRD-inclination-analysis"
 )
 
-parser.add_argument('--name',
+parser.add_argument('--db_name',
+    action='store',
+    nargs=1,
+    default="final_simulations.db",
+    help="Name of a specific simulation to be searched for"
+)
+
+parser.add_argument('--sim_name',
     action='store',
     nargs=1,
     default="simulation0",
@@ -151,8 +158,7 @@ if args.debug:
     print(f"------ LiteBIRD inclination Data Analyzing script ------")
     print(args)
 
-dbname = "db/final_simulations"
-mydb = database.SimulationDatabase(database_name=dbname,main_table=args.name[0])
+mydb = database.SimulationDatabase(database_name=args.db_name,main_table=args.sim_name[0])
 
 if args.select is None:
     data = mydb.order(column=args.order,order_type=order_type)
@@ -197,7 +203,7 @@ if not args.select:
             ymean = float("{:.2f}".format(mean(y)))
             ax[i].plot(angles,[mean(y) for i in y],color=color,zorder=20,label=f"mean {f}= {ymean}")
             ax[i].legend()
-    plt.suptitle(f"{args.name[0]} - FWHM Error for all frequencies")
+    plt.suptitle(f"{args.sim_name[0]} - FWHM Error for all frequencies")
 
 elif args.select[0] == "frequency":
     fig,ax = plt.subplots(1,3,figsize=figsize)
@@ -212,7 +218,7 @@ elif args.select[0] == "frequency":
         ax[i].plot(angles,[mean(ydata) for i in ydata],color="orange",linewidth=3,label=f"Mean: {ymean}")
         ax[i].legend()
 
-        plt.suptitle(f"{args.name[0]} - FWHM Error for frequency: {args.select[1]}")
+        plt.suptitle(f"{args.sim_name[0]} - FWHM Error for frequency: {args.select[1]}")
 
 #if args.selected[0] == "planet":
     

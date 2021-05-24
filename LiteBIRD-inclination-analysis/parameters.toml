@@ -28,7 +28,7 @@ save_error_map = false
 save_hitmap = false
 
 [database]
-active = true
+active = false
 name = "final_simulations2"
 
 #Solo idee di possibili parametri, eventualmente da aggiungere al report  (alcuni tramite l'oggetto lbs.Simulation)
