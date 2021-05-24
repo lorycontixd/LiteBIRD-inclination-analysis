@@ -210,7 +210,9 @@ def asymmetric_beam_good(mytuple,fwhm_arcmin,eccentricity,angle,amplitude=1.0):
     a2 = a0*(1-eccentricity)
     exponential = -4*np.log(2) * ( (u/np.deg2rad(a0 / 60.0))**2 + (v/np.deg2rad(a2/60.0))**2 )
     result = amplitude * np.exp(exponential)
-    if not isinstance(pixel_theta,(float,np.float64)):
+    if not isinstance(pixel_theta,(float,np.float64)) and (pixel_theta > np.pi / 2):
+        result = 0
+    else:
         result[pixel_theta > np.pi / 2] = 0.0
     return result
 
